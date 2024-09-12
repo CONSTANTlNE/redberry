@@ -1,0 +1,265 @@
+
+.hidden {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.inline-flex{
+    display: inline-flex;
+}
+
+.select-btn-color {
+    background: #FFF;
+    border: 1px solid #FFF;
+}
+
+.select-btn-color-active {
+    border: 1px solid #F3F3F3;
+    background: #F3F3F3
+}
+
+.arrow-toggle {
+    transform: rotate(180deg);
+}
+
+
+.top-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.select-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6px;
+    align-items: center;
+    gap: 24px;
+    border-radius: 10px;
+    border: 1px solid #DBDBDB;
+    background: #FFF;
+}
+
+/*on select   border: 1px solid #F3F3F3;background: #F3F3F3; */
+.select-btn {
+    display: flex;
+    padding: 8px 14px;
+    align-items: center;
+    gap: 4px;
+    border-radius: 6px;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-name {
+    text-align: left;
+    color: #021526;
+    font-family: FiraGO, serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+
+.region-dropdown {
+    position: absolute;
+    left: -6px;
+    top: 100%;
+    margin-top: 10px;
+    width: 731px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
+    border: 1px solid #DBDBDB;
+    background: #FFF;
+    box-shadow: 5px 5px 12px 0 rgba(2, 21, 38, 0.08);
+
+
+}
+
+.arrow-svg {
+    width: 14px;
+    height: 14px;
+
+}
+
+
+.region-items {
+    display: flex;
+
+    width: 679px;
+    align-items: flex-end;
+    align-content: flex-end;
+    gap: 16px 50px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+
+.region {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 191px;
+}
+
+
+/*Price-Range Dropdown*/
+
+.inline-dropdown {
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: -6px;
+    top: 100%;
+    margin-top: 10px;
+
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    border-radius: 10px;
+    border: 1px solid #DBDBDB;
+    background: #FFF;
+    box-shadow: 5px 5px 12px 0 rgba(2, 21, 38, 0.08);
+
+
+}
+
+.price-range-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+
+.range {
+    display: flex;
+   width: 100%;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.range-box {
+    display: flex;
+    height: 42px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    border-radius: 6px;
+    border: 1px solid #808A93;
+}
+
+.range-input {
+    max-width: 115px;
+    height: 17px;
+    border: 1px solid #fff;
+    flex: 1 0 0;
+    color: rgba(2, 21, 38, 0.40);
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.prices {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.price-list {
+    display: flex;
+    width: 155px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.prices p {
+    margin: 0;
+    color: #2D3648;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.select-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.select-price-btn {
+    /*margin-left: auto;*/
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #F93B1D;
+    border: 1px solid #F93B1D;
+
+    color: #FFF;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.select-price-btn:hover{
+    border-radius: 8px;
+    background: #DF3014;
+}
+
+
+/*SELECTED ITEMS SEARCH */
+
+.search-wrapper{
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+
+}
+.search-item-wrapper{
+    display: flex;
+    padding: 6px 10px;
+    align-items: center;
+    gap: 4px;
+
+    border-radius: 43px;
+    border: 1px solid #DBDBDB;
+    background: #FFF;
+}
+
+.searchable{
+    color: rgba(2, 21, 38, 0.80);
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.remove-icon{
+    cursor: pointer;
+}
+

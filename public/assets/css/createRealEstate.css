@@ -1,0 +1,28 @@
+
+.create-real-estate-wrapper{
+
+    display: flex;
+    width: 100%;
+   justify-content: center;
+    align-content: center;
+
+}
+
+.real-estate-form{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 80px;
+    max-width: 1211px;
+
+}
+
+.agent-validation-wrapper{
+    display: flex;
+    gap: 7px;
+    margin-top: 4px;
+}
+
+.agent-validation-info{
+
+}

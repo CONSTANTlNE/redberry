@@ -1,0 +1,459 @@
+openapi: "3.0.3"
+info:
+  title: Real estate manager api
+  version: "1.0"
+servers:
+  - url: https://api.real-estate-manager.redberryinternship.ge/api
+    description: Production server
+  - url: http://127.0.0.1:8000/api
+    description: Development server
+components:
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+      description: Token for scoping responses
+paths:
+  /agents:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - agents
+      summary: Get all agents
+      responses:
+        "200":
+          description: A list of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    surname:
+                      type: string
+                    avatar:
+                      type: string
+        "401":
+          $ref: "blocks/token-required-error.yml"
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - agents
+      summary: Create an agent
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "gela"
+                surname:
+                  type: string
+                  example: "gocha"
+                email:
+                  type: string
+                  example: "gela@redberry.ge"
+                phone:
+                  type: string
+                  example: "555555555"
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        "201":
+          description: Agent created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  phone:
+                    type: string
+                  avatar:
+                    type: string
+        "422":
+          $ref: "blocks/validation-error.yml"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+  /real-estates:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - real-estates
+      summary: Get all real estates
+      responses:
+        "200":
+          description: A list of real estates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    address:
+                      type: string
+                      example: "შარტავას 2ა"
+                    zip_code:
+                      type: string
+                      example: "0101"
+                    price:
+                      type: number
+                      example: 100000
+                    area:
+                      type: number
+                      example: 100.5
+                    bedrooms:
+                      type: integer
+                      example: 3
+                    is_rental:
+                      type: integer
+                      example: 0
+                    image:
+                      type: string
+                      example: "https://api.real-estate-manager.redberryinternship.ge/storage/agent_avatars/KXhmcUIaDo7TTkgfCBraeUhx3Nd6eTKrmsXOWkPh.png"
+                    city_id:
+                      type: integer
+                      example: 1
+                    city:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "სოხუმი"
+                        region_id:
+                          type: integer
+                          example: 1
+                        region:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: "აფხაზეთი"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - real-estates
+      summary: Create a real estate
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: "შარტავას 2ა"
+                image:
+                  type: string
+                  format: binary
+                region_id:
+                  type: integer
+                  example: 1
+                description:
+                  type: string
+                  example: "სახლი ლიანდაგთან"
+                city_id:
+                  type: integer
+                  example: 1
+                zip_code:
+                  type: string
+                  example: "0101"
+                price:
+                  type: number
+                  example: 100000
+                area:
+                  type: number
+                  example: 100.5
+                bedrooms:
+                  type: integer
+                  example: 3
+                is_rental:
+                  type: integer
+                  example: 0
+                agent_id:
+                  type: integer
+                  example: 1
+      responses:
+        "201":
+          description: Real estate created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  price:
+                    type: string
+                    example: "100000"
+                  zip_code:
+                    type: string
+                    example: "0101"
+                  description:
+                    type: string
+                    example: "სახლი ლიანდაგთან"
+                  area:
+                    type: string
+                    example: "100.5"
+                  city_id:
+                    type: string
+                    example: "1"
+                  address:
+                    type: string
+                    example: "შარტავას 2ა"
+                  agent_id:
+                    type: string
+                    example: "1"
+                  bedrooms:
+                    type: string
+                    example: "3"
+                  is_rental:
+                    type: string
+                    example: "0"
+                  image:
+                    type: string
+                    example: "https://api.real-estate-manager.redberryinternship.com/images/hmnVAO6LEytzoxFz8vRqBCry6ba1wvHvo2YxPXJW.jpg"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2024-08-07T10:46:53.000000Z"
+                  id:
+                    type: integer
+                    example: 1
+        "422":
+          $ref: "blocks/validation-error.yml"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+  /real-estates/{id}:
+    get:
+      tags:
+        - real-estates
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: detailed information about real estate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  address:
+                    type: string
+                    example: "შარტავას 2ა"
+                  zip_code:
+                    type: string
+                    example: "0101"
+                  price:
+                    type: number
+                    example: 100000
+                  area:
+                    type: number
+                    example: 100.5
+                  bedrooms:
+                    type: integer
+                    example: 3
+                  is_rental:
+                    type: integer
+                    example: 0
+                  city_id:
+                    type: integer
+                    example: 1
+                  description:
+                    type: string
+                    example: "სახლი ლიანდაგთან"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2024-08-07T10:46:53.000000Z"
+                  city:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: "სოხუმი"
+                      region_id:
+                        type: integer
+                        example: 1
+                      region:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: "აფხაზეთი"
+                  agent_id:
+                    type: integer
+                    example: 1
+                  agent:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: "gela"
+                      surname:
+                        type: string
+                        example: "gocha"
+                      email:
+                        type: string
+                        example: "gela@redberry.ge"
+                      phone:
+                        type: string
+                        example: "555555555"
+                      avatar:
+                        type: string
+                        example: "https://api.real-estate-manager.redberryinternship.com/images/hmnVAO6LEytzoxFz8vRqBCry6ba1wvHvo2YxPXJW.jpg"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+        "404":
+          description: Real estate not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Real estate not found"
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - real-estates
+      summary: Delete a real estate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Real estate deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Real estate deleted"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+        "404":
+          description: Real estate not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Real estate not found"
+
+  /cities:
+    get:
+      tags:
+        - geographical information
+      summary: Get all cities
+      responses:
+        "200":
+          description: A list of cities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "რუსთავი"
+                    region_id:
+                      type: integer
+                      example: 1
+                    region:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "თბილისი"
+        "401":
+          $ref: "blocks/token-required-error.yml"
+  /regions:
+    get:
+      tags:
+        - geographical information
+      summary: Get all regions
+      responses:
+        "200":
+          description: A list of regions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "გორი"
+        "401":
+          $ref: "blocks/token-required-error.yml"

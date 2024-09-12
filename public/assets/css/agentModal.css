@@ -1,0 +1,182 @@
+/*Agent Modal*/
+
+#agent-modal {
+    width: 1009px;
+    height: 784px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    border: 1px solid #FFF;
+    box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.08);
+    padding: 85px 105px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+.modal-title {
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.modal-buttons-wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 15px;
+}
+
+.cancel-btn {
+    display: inline-flex;
+    height: 47px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    border: 1px solid #F93B1D;
+    color: #F93B1D;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.add-btn {
+    display: inline-flex;
+    height: 47px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #F93B1D;
+    border: 1px solid #F93B1D;
+
+    color: #FFF;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+
+}
+
+.modal-input-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 31px;
+}
+
+.modal-input {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.agent-input{
+    display: flex;
+    width: 384px;
+    height: 42px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 6px;
+    border: 1px solid #808A93;
+}
+.label{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 5px;
+}
+
+.modal-input-photo{
+    width: 100%;
+    margin-bottom: 90px;
+}
+
+
+.agent-photo-placeholder{
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px dashed #2D3648;
+    background: #FFF;
+}
+
+.agent-validation-wrapper{
+    display: flex;
+    align-items: center;
+
+}
+
+
+#imagePreview{
+    position:relative;
+}
+#agent-avatar-delete-icon{
+    position: absolute;
+    bottom:-5px;
+    right: -10px;
+    display:none;
+
+}
+
+#agent-avatar-upload-icon{
+    cursor: pointer;
+}
+
+
+
+#trash-svg{
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+
+#uploadedImage{
+    width: 92px;
+    height: 82px;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+
