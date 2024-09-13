@@ -2,6 +2,7 @@
 // Upload and display image
 
 const imageUpload = document.getElementById('imageUpload');
+
 const uploadedImage = document.getElementById('uploadedImage');
 const upload_icon = document.getElementById('agent-avatar-upload-icon')
 const delete_icon = document.getElementById('agent-avatar-delete-icon')
@@ -10,14 +11,14 @@ const agent_avatar_validation = document.getElementById('agent-avatar-validation
 upload_icon.addEventListener('click', () => {
 
     imageUpload.click()
-    upload_icon.style.display = 'none'
+
 
 })
 
 
 imageUpload.addEventListener('change', function (event) {
     const file = event.target.files[0]; // Get the selected file
-
+    upload_icon.style.display = 'none'
     if (file) {
         const reader = new FileReader();
 

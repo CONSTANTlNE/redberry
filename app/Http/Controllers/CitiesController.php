@@ -19,7 +19,7 @@ class CitiesController extends Controller
 
         if ($response2->successful()) {
 
-            $cities = $response2->json();
+            $allcities = $response2->json();
 
         } else {
 
@@ -27,14 +27,14 @@ class CitiesController extends Controller
         }
 
 
-        $regionCities = array_filter($cities, function ($city) use ($regionId) {
+        $cities = array_filter($allcities, function ($city) use ($regionId) {
 
             return $city['region_id'] == $regionId;
         });
 
 
 
-        return view('htmx.cities',compact('regionCities'));
+        return view('htmx.cities',compact('cities'));
 
 
     }

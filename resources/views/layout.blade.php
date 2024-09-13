@@ -9,6 +9,23 @@
 
     <style>
 
+        @font-face {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-display: swap;
+            font-weight: 400;
+            src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff) format('woff');
+        }
+
+        /* firago-latin-500-normal */
+        @font-face {
+            font-family: 'FiraGO';
+            font-style: normal;
+            font-display: swap;
+            font-weight: 500;
+            src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff) format('woff');
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -67,54 +84,34 @@
             color: #FFF;
         }
 
-        /*Listing Grid */
 
 
-        .listing-section {
-            margin-top: 32px;
-            display: flex;
-            max-width: 1596px;
-            padding-bottom: 300px;
-            align-items: center;
-            align-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .listing-item {
-            display: flex;
-            width: 384px;
-            flex-direction: column;
-            align-items: flex-start;
-            flex-shrink: 0;
-            box-shadow: 5px 5px 12px 0 rgba(2, 21, 38, 0.08);
-        }
-
-        .listing-item img {
-            height: 307px;
-            align-self: stretch;
-            border-radius: 14px 14px 0 0;
-            background: lightgray 50% / cover no-repeat;
-        }
 
     </style>
+
 
     <link rel="stylesheet" href="{{asset('assets/css/dropdown.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/agentModal.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/createListing.css')}}">
-    <script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{asset('assets/css/listingsSection.css')}}">
+    <script src="https://unpkg.com/htmx.org@2.0.2"
+            integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
+<div id="htmxerrors"></div>
 <body style="display: flex; flex-direction: column;justify-content: center;align-items: center;">
 
 
 <header>
     <a href="{{route('real-estates.index')}}">
-    <img src="{{asset('assets/img/LOGO-02 3.png')}}" alt="">
+        <img src="{{asset('assets/img/LOGO-02 3.png')}}" alt="">
     </a>
 </header>
-
-
 
 
 @yield('index')
@@ -122,14 +119,73 @@
 
 @include('components.agentmodal')
 
-@if(request()->routeIs('real-estates.index'))
-<script src="{{asset('assets/js/dropdown.js')}}"></script>
-<script src="{{asset('assets/js/searchSelection.js')}}"></script>
-<script src="{{asset('assets/js/agentModal.js')}}"></script>
-@endif
-<script src="{{asset('assets/js/imageUpload.js')}}"></script>
-<script src="{{asset('assets/js/listingValidation.js')}}"></script>
+
+
 
 
 </body>
+
+
+
+
+
+@if(session()->has('alert_error'))
+    <script>
+        Swal.fire({
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1800,
+                text: '{{session()->get('alert_error')}}',
+            },
+        )
+    </script>
+    @php
+        session()->forget('alert_error');
+    @endphp
+@endif
+@if(session()->has('alert_success'))
+    <script>
+        Swal.fire({
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1800,
+                text: '{{session()->get('alert_success')}}',
+            },
+        )
+    </script>
+    @php
+        session()->forget('alert_success');
+    @endphp
+@endif
+
+
+@if(request()->routeIs('real-estates.index'))
+    <script>
+        const allRegions= {!! json_encode($regions) !!};
+        const allistings= {!! json_encode($listings) !!};
+    </script>
+
+
+    <script src="{{asset('assets/js/dropdown.js')}}"></script>
+    <script src="{{asset('assets/js/searchSelection.js')}}"></script>
+    <script src="{{asset('assets/js/agentModal.js')}}"></script>
+    <script src="{{asset('assets/js/filter.js')}}"></script>
+@endif
+<script src="{{asset('assets/js/imageUpload.js')}}"></script>
+@if(request()->routeIs('real-estates.create'))
+<script src="{{asset('assets/js/listingValidation.js')}}"></script>
+@endif
+<script src="{{asset('assets/js/custom-htmx.js')}}"></script>
+
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+    const regions = params.getAll('region[]');
+
+    console.log(regions); // Output: ['1', '9']
+
+</script>
+
+
 </html>

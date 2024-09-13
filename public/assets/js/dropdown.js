@@ -4,13 +4,16 @@ const arrowToggle = document.getElementById('region_svg');
 
 // Function to toggle the dropdown visibility
 
+
 function toggleDropdown() {
     arrowToggle.classList.toggle('arrow-toggle');
 
     if (regionDropdownBtn.classList.contains('select-btn-color')) {
+
         regionDropdownBtn.classList.remove('select-btn-color');
         regionDropdownBtn.classList.add('select-btn-color-active');
     } else {
+
         regionDropdownBtn.classList.remove('select-btn-color-active');
         regionDropdownBtn.classList.add('select-btn-color');
     }
@@ -19,23 +22,45 @@ function toggleDropdown() {
     regionDropdown.classList.toggle('flex');
 }
 
-// Click event for the button
+// Function to close the dropdown
+function closeDropdown() {
+    arrowToggle.classList.remove('arrow-toggle');
+
+    if (regionDropdownBtn.classList.contains('select-btn-color-active')) {
+        regionDropdownBtn.classList.remove('select-btn-color-active');
+        regionDropdownBtn.classList.add('select-btn-color');
+    }
+
+    regionDropdown.classList.remove('flex');
+    regionDropdown.classList.add('hidden');
+}
+
+
 regionDropdownBtn.addEventListener('click', function (event) {
+
     event.stopPropagation();
     toggleDropdown();
 });
 
 
+document.getElementById('select-region').addEventListener('click', function (event) {
 
-// Click elsewere to close dropdown when clicking outside
+    closeDropdown();
+});
+
+
+
+// close whe clicking elsewere
 document.addEventListener('click', function (event) {
 
-    if (!regionDropdown.contains(event.target) && event.target !== regionDropdownBtn) {
-        if (!regionDropdown.classList.contains('hidden')) {
-            toggleDropdown(); // Close the dropdown
-        }
+    if (regionDropdown.classList.contains('flex') &&
+        !regionDropdown.contains(event.target) &&
+        !regionDropdownBtn.contains(event.target)) {
+        closeDropdown();
     }
-}, true);
+});
+
+
 
 
 
@@ -54,8 +79,8 @@ inlineBtns.forEach(function (inlineBtn, index) {
 
     inlineBtn.addEventListener('click', function (event) {
         event.stopPropagation();
-
-
+        closeDropdown();
+console.log('clicked');
         if (currentlyOpenIndex !== null && currentlyOpenIndex !== index) {
             // Close the previously opened dropdown
             inlineDropdowns[currentlyOpenIndex].classList.remove('inline-flex');
@@ -88,12 +113,15 @@ inlineBtns.forEach(function (inlineBtn, index) {
         }
 
         currentlyOpenIndex = (currentlyOpenIndex === index) ? null : index; // Toggle state
-    });
+    }, );
 });
 
+
 // Close dropdown when clicking outside
-document.addEventListener('click', function () {
-    if (currentlyOpenIndex !== null) {
+document.addEventListener('click', (event)=> {
+
+    console.log(event.target)
+    if (currentlyOpenIndex !== null && !event.target.closest('.inline-dropdown') || event.target.classList.contains('select-price-btn') ) {
         inlineDropdowns[currentlyOpenIndex].classList.remove('inline-flex');
         inlineDropdowns[currentlyOpenIndex].classList.add('hidden');
         inlineBtns[currentlyOpenIndex].classList.remove('select-btn-color-active');
@@ -102,5 +130,6 @@ document.addEventListener('click', function () {
 
         currentlyOpenIndex = null; // Reset index
     }
+
 }, true);
 

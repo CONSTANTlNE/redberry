@@ -53,6 +53,12 @@ function validateSurname(surname) {
 
 function validateAvatar(avatar) {
 
+
+    if(imageUpload.files.length > 0){
+
+        return true
+    }
+
     if (!avatar) {
         return false
     }

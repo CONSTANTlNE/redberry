@@ -5,27 +5,27 @@
 {{--    @dd($cities)--}}
 
 <div class="create-real-estate-wrapper">
-<h1>ლისტინგის დამატება</h1>
+<h1 class="firago-listing-heading">ლისტინგის დამატება</h1>
 
     <form id="listing-form" class="real-estate-form" action="{{route('real-estates.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="real-estate-type-wrapper">
-            <p>გარიგების ტიპი</p>
+            <h3 class="helvetica-heading">გარიგების ტიპი</h3>
 
             <div>
 
-                <input name="is_rental" type="radio" id="sale-type">
-                <label for="sale-type">იყიდება</label>
+                <input name="is_rental" value="0" type="radio" id="sale-type">
+                <label class="radio-label"  for="sale-type">იყიდება</label>
 
-                <input name="is_rental" type="radio" id="rent-type">
-                <label for="rent-type">ქირავდება</label>
+                <input name="is_rental" value="1" type="radio" id="rent-type">
+                <label class="radio-label" for="rent-type">ქირავდება</label>
                 <div id="sale-type-validation"  class="agent-validation-wrapper">
 
                 </div>
             </div>
         </div>
         <div class="real-estate-location-wrapper">
-            <p>მდებარეობა</p>
+            <h3 class="helvetica-heading">მდებარეობა</h3>
             <div class="modal-input-wrapper">
                 <div class="modal-input">
                     <label class="label" for="address">მისამართი <sup>*</sup></label>
@@ -89,7 +89,7 @@
         </div>
 
         <div class="real-estate-details-wrapper">
-            <p>ბინის დეტალები</p>
+            <h3  class="helvetica-heading">ბინის დეტალები</h3>
             <div class="modal-input-wrapper">
                 <div class="modal-input">
                     <label class="label" for="price">ფასი</label>
@@ -180,12 +180,13 @@
         </div>
 
         <div class="real-estate-agent-wrapper">
-            <p>აგენტი</p>
+            <h3 class="helvetica-heading" >აგენტი </h3>
             <div class="modal-input-wrapper">
                 <div class="modal-input">
                     <label class="label" for="agent_id">აირჩიე</label>
                     <select name="agent_id" class="agent-input" id="agent_id">
                         <option value="">აირჩიეთ აგენტი</option>
+                        <option value="">დაამატე აგენტი</option>
                         @foreach($agents as $agent)
                             <option value="{{ $agent['id'] }}">{{ $agent['name'] }}</option>
                         @endforeach

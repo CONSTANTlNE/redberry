@@ -72,6 +72,11 @@ function agentValidation(agent) {
 }
 function validateAvatar(avatar) {
 
+    if(imageUpload.files.length > 0){
+
+        return true
+    }
+
     if (!avatar) {
         return false
     }
@@ -92,7 +97,6 @@ function validateAvatar(avatar) {
 }
 
 
-
 listingForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -107,7 +111,6 @@ listingForm.addEventListener('submit', (event) => {
     const descriptionValue=descriptionInput.value;
     const agentValue=agentSelect.value;
     avatar = imageUpload.files[0];
-
 
     let isValid2 = true;
 
@@ -425,7 +428,7 @@ listingForm.addEventListener('submit', (event) => {
         agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
         agent_avatar_validation.style.color = 'red';
 
-        isValid = false;
+        isValid2 = false;
     }
     else {
 

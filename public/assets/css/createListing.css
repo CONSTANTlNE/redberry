@@ -1,4 +1,53 @@
 
+@font-face {
+    font-family: 'Helvetica Neue';
+    src:url('linotypeBold.otf') format('truetype');
+
+}
+
+
+
+
+.vtext{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.radio-label{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.firago-listing-heading{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+.helvetica-heading{
+    color: #1A1A1F;
+    font-family: 'Helvetica Neue';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-feature-settings: "case";
+    text-transform: uppercase;
+
+}
+
 .create-real-estate-wrapper{
 
     display: flex;
@@ -27,9 +76,7 @@
     margin-top: 4px;
 }
 
-.agent-validation-info{
 
-}
 
 .real-estate-location-wrapper{
     display: flex;

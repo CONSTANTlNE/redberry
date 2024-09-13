@@ -1,5 +1,17 @@
 /*Agent Modal*/
 
+
+.agent-validation-info{
+
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
 #agent-modal {
     width: 1009px;
     height: 784px;
@@ -111,6 +123,14 @@
 
     border-radius: 6px;
     border: 1px solid #808A93;
+
+
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 .label{
     color: #021526;
