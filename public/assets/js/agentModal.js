@@ -1,8 +1,12 @@
 
+
+
+
 // Modal Functionality
 const openAgentModal = document.getElementById('agent-open-modal');
 const agentModal = document.getElementById('agent-modal');
 const closeAgentModal = document.getElementById('close-agent-modal');
+
 
 openAgentModal.addEventListener('click', () => {
     agentModal.showModal();
@@ -14,57 +18,406 @@ closeAgentModal.addEventListener('click', () => {
 
 
 
-// Upload and display image
-
-
-const imageUpload = document.getElementById('imageUpload');
-const uploadedImage = document.getElementById('uploadedImage');
-const image_div = document.getElementById('image-div');
-const upload_icon=document.getElementById('agent-avatar-upload-icon')
-const delete_icon=document.getElementById('agent-avatar-delete-icon')
-upload_icon.addEventListener('click',()=>{
-
-    imageUpload.click()
-    upload_icon.style.display='none'
-
-})
-
-
-
-// Listen for file selection
-imageUpload.addEventListener('change', function(event) {
-    const file = event.target.files[0]; // Get the selected file
-
-    if (file) {
-        const reader = new FileReader();
-
-        // When the file is read, display it
-        reader.onload = function(e) {
-
-            uploadedImage.src = e.target.result; // Set the image source to the file content
-            uploadedImage.style.display = 'block'; // Show the image
-        };
-
-        reader.readAsDataURL(file); // Read the file as a Data URL
-    }
-
-
-    setTimeout(function() {
-        delete_icon.style.display = 'flex';
-    }, 200);
-});
-
-
-
-// listen for delete icon
-delete_icon.addEventListener('click',(e)=>{
-    delete_icon.style.display = 'none';
-    uploadedImage.style.display = 'none';
-    upload_icon.style.display='block'
-
-})
-
 
 // agent Form Validation
+
+const agentForm = document.getElementById('agent-form');
+const agent_phone_validation = document.getElementById('agent-phone-validation')
+const agent_surname_validation = document.getElementById('agent-surname-validation')
+const agent_email_validation = document.getElementById('agent-email-validation')
+const agent_firstname_validation = document.getElementById('agent-firstname-validation')
+
+const agent_phone_input = document.getElementById('agent-phone')
+const agent_firstname_input = document.getElementById('agent-firstname')
+const agent_email_input = document.getElementById('agent-email')
+const agent_surname_input = document.getElementById('agent-surname')
+const allInputs = agentForm.querySelectorAll('input');
+
+
+function validatePhone(phone) {
+    return /^5\d{8}$/.test(phone);
+}
+
+function validateEmail(email) {
+    return /^[^\s@]+@redberry\.ge$/.test(email);
+}
+
+function validateName(name) {
+
+    return typeof name === 'string' && name.trim().length >= 2;
+}
+
+function validateSurname(surname) {
+    return typeof surname === 'string' && surname.trim().length >= 2;
+}
+
+function validateAvatar(avatar) {
+
+    if (!avatar) {
+        return false
+    }
+
+    // Validate type
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validImageTypes.includes(avatar.type)) {
+        return false
+    }
+
+    // Validate Size
+    const fileSize = avatar.size / 1024 / 1024; // in MB
+    if (fileSize > 1) {
+        return false
+    }
+
+    return true;
+}
+
+
+agentForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    agent_phone_validation.textContent = '';
+    agent_surname_validation.textContent = '';
+    agent_email_validation.textContent = '';
+    agent_firstname_validation.textContent = '';
+    agent_avatar_validation.textContent = '';
+
+    const phone = agent_phone_input.value;
+    const surname = agent_surname_input.value;
+    const email = agent_email_input.value;
+    const firstname = agent_firstname_input.value;
+     avatar = imageUpload.files[0];
+
+    let isValid = true;
+
+    if (!validatePhone(phone)) {
+        agent_phone_validation.innerHTML =
+            `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+        agent_phone_input.style.borderColor = 'red';
+        agent_phone_validation.style.color = 'red';
+        isValid = false;
+    } else {
+        agent_phone_validation.innerHTML =
+            `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მხოლოდ რიცხვები</span>
+            
+            `
+
+        agent_phone_input.style.borderColor = 'green';
+        agent_phone_validation.style.color = 'green';
+
+    }
+
+    if (!validateSurname(surname)) {
+        agent_surname_validation.innerHTML =
+
+            `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+        agent_surname_input.style.borderColor = 'red';
+        agent_surname_validation.style.color = 'red';
+
+
+        isValid = false;
+    } else {
+        agent_surname_validation.innerHTML =
+            `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
+            
+            `
+        agent_surname_input.style.borderColor = 'green';
+        agent_surname_validation.style.color = 'green';
+
+
+
+    }
+
+    if (!validateEmail(email)) {
+        agent_email_validation.innerHTML =
+
+            `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">გამოიყენეთ @redberry.ge ფოსტა</span>
+    `;
+
+
+        agent_email_validation.style.color = 'red';
+        agent_email_input.style.borderColor = 'red';
+
+        isValid = false;
+    } else {
+        agent_email_validation.innerHTML =
+            `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">გამოიყენეთ @redberry.ge ფოსტა</span>
+            
+            `
+        agent_email_validation.style.color = 'green';
+        agent_email_input.style.borderColor = 'green';
+
+
+
+    }
+
+    if (!validateName(firstname)) {
+        agent_firstname_validation.innerHTML =
+
+            `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+        agent_firstname_input.style.borderColor = 'red';
+        agent_firstname_validation.style.color = 'red';
+
+        isValid = false;
+    }
+    else {
+        agent_firstname_validation.innerHTML =
+            `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
+            
+            `
+
+        agent_firstname_input.style.borderColor = 'green';
+        agent_firstname_validation.style.color = 'green';
+
+
+
+    }
+
+    if (!validateAvatar(avatar)) {
+
+        agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
+        agent_avatar_validation.style.color = 'red';
+
+        isValid = false;
+    }
+    else {
+
+        agent_avatar_validation.innerHTML =
+            ` ატვირთეთ ფოტო <sup>*</sup>
+            `
+        agent_avatar_validation.style.color = 'green';
+
+    }
+
+    if (isValid) {
+        agentForm.submit();
+    }
+
+})
+
+allInputs.forEach((input) => {
+    input.addEventListener('input', (e) => {
+
+
+        const phone = agent_phone_input.value;
+        const surname = agent_surname_input.value;
+        const email = agent_email_input.value;
+        const firstname = agent_firstname_input.value;
+        const avatar = imageUpload.files[0];
+
+        let isValid = true;
+
+        if (input === agent_phone_input) {
+            if (!validatePhone(phone)) {
+                agent_phone_validation.innerHTML =
+                    `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+                agent_phone_input.style.borderColor = 'red';
+                agent_phone_validation.style.color = 'red';
+                isValid = false;
+            } else {
+                agent_phone_validation.innerHTML =
+                    `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მხოლოდ რიცხვები</span>
+            
+            `
+
+                agent_phone_input.style.borderColor = 'green';
+                agent_phone_validation.style.color = 'green';
+                isValid = true;
+            }
+        }
+
+        if (input === agent_surname_input) {
+            if (!validateSurname(surname)) {
+                agent_surname_validation.innerHTML =
+
+                    `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+                agent_surname_input.style.borderColor = 'red';
+                agent_surname_validation.style.color = 'red';
+
+
+                isValid = false;
+            } else {
+                agent_surname_validation.innerHTML =
+                    `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
+            
+            `
+                agent_surname_input.style.borderColor = 'green';
+                agent_surname_validation.style.color = 'green';
+                isValid = true;
+
+
+            }
+
+        }
+
+        if (input === agent_email_input) {
+            if (!validateEmail(email)) {
+                agent_email_validation.innerHTML =
+
+                    `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">გამოიყენეთ @redberry.ge ფოსტა</span>
+    `;
+
+
+                agent_email_validation.style.color = 'red';
+                agent_email_input.style.borderColor = 'red';
+
+                isValid = false;
+            } else {
+                agent_email_validation.innerHTML =
+                    `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">გამოიყენეთ @redberry.ge ფოსტა</span>
+            
+            `
+                agent_email_validation.style.color = 'green';
+                agent_email_input.style.borderColor = 'green';
+                isValid = true;
+
+
+            }
+
+        }
+
+        if (input === agent_firstname_input) {
+            if (!validateName(firstname)) {
+                agent_firstname_validation.innerHTML =
+
+                    `
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="red" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+    `;
+
+                agent_firstname_input.style.borderColor = 'red';
+                agent_firstname_validation.style.color = 'red';
+
+                isValid = false;
+            } else {
+                agent_firstname_validation.innerHTML =
+                    `             
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                    <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="green" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+
+                <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
+            
+            `
+
+                agent_firstname_input.style.borderColor = 'green';
+                agent_firstname_validation.style.color = 'green';
+                isValid = true;
+
+
+            }
+
+        }
+
+
+    })
+})
 
 

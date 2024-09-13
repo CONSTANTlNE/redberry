@@ -1,5 +1,5 @@
 <dialog id="agent-modal">
-    <form action="{{route('agents.create')}}" method="post"  enctype="multipart/form-data">
+    <form id="agent-form" action="{{route('agents.create')}}" method="post"  enctype="multipart/form-data">
         @csrf
         <div class="modal-header">
             <p class="modal-title">აგენტის დამატება</p>
@@ -7,9 +7,9 @@
         <div class="modal-body">
             <div class="modal-input-wrapper">
                 <div class="modal-input">
-                    <label class="label" for="firstname">სახელი <sup>*</sup></label>
-                    <input name="name" class="agent-input" id="firstname" type="text">
-                    <div class="agent-validation-wrapper">
+                    <label class="label" for="agent-firstname">სახელი <sup>*</sup></label>
+                    <input name="name" class="agent-input" id="agent-firstname" type="text">
+                    <div id="agent-firstname-validation" class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
                             <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="#021526" stroke-width="2"
                                   stroke-linecap="round"
@@ -20,9 +20,9 @@
                     </div>
                 </div>
                 <div class="modal-input">
-                    <label class="label" for="surname">გვარი</label>
-                    <input name="surname" class="agent-input" id="surname" type="text">
-                    <div class="agent-validation-wrapper">
+                    <label class="label" for="agent-surname">გვარი</label>
+                    <input name="surname" class="agent-input" id="agent-surname" type="text">
+                    <div id="agent-surname-validation"  class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
                             <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="#021526" stroke-width="2"
                                   stroke-linecap="round"
@@ -35,9 +35,9 @@
             </div>
             <div class="modal-input-wrapper">
                 <div class="modal-input">
-                    <label class="label" for="email">ელ-ფოსტა <sup>*</sup></label>
-                    <input name="email" class="agent-input" id="email" type="text">
-                    <div class="agent-validation-wrapper">
+                    <label class="label" for="agent-email">ელ-ფოსტა <sup>*</sup></label>
+                    <input name="email" class="agent-input" id="agent-email" type="text">
+                    <div id="agent-email-validation" class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
                             <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="#021526" stroke-width="2"
                                   stroke-linecap="round"
@@ -47,9 +47,9 @@
                     </div>
                 </div>
                 <div class="modal-input">
-                    <label class="label" for="phone">ტელეფონის ნომერი</label>
-                    <input name="phone" class="agent-input" id="phone" type="text">
-                    <div class="agent-validation-wrapper">
+                    <label class="label" for="agent-phone">ტელეფონის ნომერი</label>
+                    <input name="phone" class="agent-input" id="agent-phone" type="text">
+                    <div id="agent-phone-validation" class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
                             <path d="M11 1.4082L4.125 9.59002L1 5.87101" stroke="#021526" stroke-width="2"
                                   stroke-linecap="round"
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="modal-input-photo">
-                <label class="label" for="firstname">ატვირთეთ ფოტო <sup>*</sup></label>
+                <label id="agent-avatar-validation" class="label" for="firstname">ატვირთეთ ფოტო <sup>*</sup></label>
                 <div  class="agent-photo-placeholder">
 
 

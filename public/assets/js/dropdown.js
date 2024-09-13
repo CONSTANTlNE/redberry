@@ -3,6 +3,7 @@ const regionDropdown = document.getElementById('region_dropdown');
 const arrowToggle = document.getElementById('region_svg');
 
 // Function to toggle the dropdown visibility
+
 function toggleDropdown() {
     arrowToggle.classList.toggle('arrow-toggle');
 
@@ -20,17 +21,14 @@ function toggleDropdown() {
 
 // Click event for the button
 regionDropdownBtn.addEventListener('click', function (event) {
-    event.stopPropagation(); // Prevent click from propagating to the document
+    event.stopPropagation();
     toggleDropdown();
 });
 
 
 
-// Click event for the document to close dropdown when clicking outside
+// Click elsewere to close dropdown when clicking outside
 document.addEventListener('click', function (event) {
-    // Check if the click is outside the dropdown and button
-
-
 
     if (!regionDropdown.contains(event.target) && event.target !== regionDropdownBtn) {
         if (!regionDropdown.classList.contains('hidden')) {
@@ -43,11 +41,7 @@ document.addEventListener('click', function (event) {
 
 
 
-
-
-
-
-
+ // Dropdown functionality for pricerange arearange and rooms dropdown
 
 
 const inlineBtns = document.querySelectorAll('.inline-btn');

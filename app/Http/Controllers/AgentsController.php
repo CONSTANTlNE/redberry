@@ -24,10 +24,9 @@ class AgentsController extends Controller
     {
 
         $file = $request->file('file');
-        $filePath = $file->path(); // Use the temporary path of the uploaded file
+        $filePath = $file->path();
 
-        // Prepare the request
-        $response = Http::withHeaders([
+         Http::withHeaders([
             'accept' => 'application/json',
             'Authorization' => 'Bearer ' . config('api.redberry'),
         ])->attach(
@@ -40,7 +39,7 @@ class AgentsController extends Controller
         ]);
 
 
-         dd($response->json());
+         return back()->with('alert_success','აგენტი წარმატებით დაემატა');
 
 
     }
