@@ -20,7 +20,7 @@ route::get('real-estates',[RealEstatesController::class,'index'])->name('real-es
 route::get('create/real-estates',[RealEstatesController::class,'create'])->name('real-estates.create');
 route::post('real-estates/store',[RealEstatesController::class,'store'])->name('real-estates.store');
 route::get('real-estates/{id}',[RealEstatesController::class,'show'])->name('real-estates.show');
-route::delete('real-estates/{id}',[RealEstatesController::class,'delete'])->name('real-estates.delete');
+route::get('listing/delete',[RealEstatesController::class,'delete'])->name('real-estates.delete');
 
 
 // Geographical information Routes

@@ -1,0 +1,285 @@
+
+
+.single-listing-wrapper{
+    display: flex;
+   width: 80%;
+    align-items: flex-start;
+    gap: 68px;
+}
+.single-top-wrapper img{
+    width: 770px;
+}
+
+.listing-data-wrapper-single {
+    display: flex;
+    width: 503px;
+    height: 714px;
+    padding-top: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    flex-shrink: 0;
+}
+
+
+.listing-price-container {
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+}
+
+
+.listing-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.listing-data-wrapper2 {
+    color: #808A93;
+    font-family: FiraGO;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.single-listing-description {
+    color: #808A93;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+}
+
+.listing-agent-wrapper {
+    border-radius: 8px;
+    border: 1px solid #DBDBDB;
+    height: 174px;
+    align-self: stretch;
+    padding: 20px
+
+}
+
+.agent-details-wrapper {
+    display: flex;
+
+    gap: 15px;
+}
+
+.agent-avatar {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+
+    border-radius: 100px;
+
+}
+
+.listing-agent-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+}
+
+.agent-name {
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.someclass {
+    color: #676E76;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.agent-emaill {
+    margin-top: 16px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+
+.agent-email {
+    all: unset;
+    color: #808A93;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.agent-tel {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.agent-mobile {
+    all: unset;
+    color: #808A93;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.delete-listing{
+
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #676E76;
+    background: #FFF;
+   cursor: pointer;
+
+    color: #676E76;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.swiper-button-prev::after, .swiper-button-next::after {
+    display: none;
+}
+
+#swiperprev {
+    position: absolute;
+    cursor:pointer;
+    left: -50px!important; /* 30px outside the container */
+    top: 50%; /* Vertically center it */
+    transform: translateY(-50%); /* Adjust to align with the vertical center */
+}
+
+#swipernext {
+    position: absolute;
+    cursor:pointer;
+    right: -50px!important; /* 30px outside the container */
+    top: 50%; /* Vertically center it */
+    transform: translateY(-50%); /* Adjust to align with the vertical center */
+}
+
+#deletelistingmodal{
+    overflow: hidden;
+    width: 623px;
+    height: 222px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 5px 5px 12px 0px rgba(2, 21, 38, 0.08);
+    border-color:#FFF;
+    position:relative;
+
+    padding:58px 100px;
+}
+
+#xsvg{
+    position:absolute;
+    top: 5px;  /* 5px from the top */
+    right: 5px;  /* 5px from the right */
+    cursor: pointer;
+}
+
+.deletemodalcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:35px
+}
+
+dialog::backdrop{
+    background: rgba(2, 21, 38, 0.34) !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+.deletebuttons{
+    display: flex;
+    gap:15px;
+}
+
+#closemodal{
+
+
+    display: inline-flex;
+    height: 47px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #F93B1D;
+
+    background: #FFF;
+    color: #F93B1D;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+#confirmdelete{
+
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    background: #F93B1D;
+
+    color: #FFF;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: 1px solid #F93B1D;
+  cursor: pointer;
+}
+
+.deletetext{
+    margin: 0;
+    text-align: center;
+    color: #2D3648;
+    font-family: FiraGO;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

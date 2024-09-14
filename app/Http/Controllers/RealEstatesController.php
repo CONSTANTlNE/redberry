@@ -36,12 +36,12 @@ class RealEstatesController extends Controller
         // START FILTERING
 
 
-        $filteredregions = [];
+        $filteredregions  = [];
         $filteredlistings = $listings; // Start with all listings
 
 // Filter by region if provided
         if ($request->has('region')) {
-            $requestregions = $request->region;
+            $requestregions   = $request->region;
             $filteredlistings = [];
 
             foreach ($listings as $listing) {
@@ -58,43 +58,39 @@ class RealEstatesController extends Controller
         }
 
 // Filter by price range if provided
-        if ($request->has('minprice') && $request->minprice!=null && $request->has('maxprice') && $request->maxprice!=null) {
+        if ($request->has('minprice') && $request->minprice != null && $request->has('maxprice') && $request->maxprice != null) {
             $minPrice = $request->minprice;
             $maxPrice = $request->maxprice;
 
-            $filteredlistings = array_filter($filteredlistings, function($listing) use ($minPrice, $maxPrice) {
+            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minPrice, $maxPrice) {
                 return $listing['price'] >= $minPrice && $listing['price'] <= $maxPrice;
             });
         }
 
 // Filter by area if provided
-        if ($request->has('minarea') && $request->minarea!=null  && $request->has('maxarea') && $request->maxarea!=null) {
-            $minArea = (float)$request->minarea;
-            $maxArea = (float)$request->maxarea;
+        if ($request->has('minarea') && $request->minarea != null && $request->has('maxarea') && $request->maxarea != null) {
+            $minArea = (float) $request->minarea;
+            $maxArea = (float) $request->maxarea;
 
-            $filteredlistings = array_filter($filteredlistings, function($listing) use ($minArea, $maxArea) {
+            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minArea, $maxArea) {
                 return $listing['area'] >= $minArea && $listing['area'] <= $maxArea;
             });
         }
 
 // Filter by rooms if provided
-        if ($request->has('bedrooms') && $request->bedrooms!=null) {
+        if ($request->has('bedrooms') && $request->bedrooms != null) {
             $rooms = $request->bedrooms;
 
-            $filteredlistings = array_filter($filteredlistings, function($listing) use ($rooms) {
+            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($rooms) {
                 return $listing['bedrooms'] == $rooms;
             });
         }
-
 
 
 // If no filters are applied, return all listings
         if (!$request->has('region') && !$request->has('minprice') && !$request->has('maxprice') && !$request->has('minarea') && !$request->has('maxarea') && !$request->has('rooms')) {
             $filteredlistings = $listings;
         }
-
-
-
 
 
         return view('index', compact('regions', 'listings', 'filteredregions', 'filteredlistings'));
@@ -168,6 +164,48 @@ class RealEstatesController extends Controller
 
 
         return back()->with('alert_success', 'ლისტინგი წარმატებით დაემატა');
+    }
+
+    public function show(Request $request, $id)
+    {
+
+        // Get single listing
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.config('api.redberry'),
+        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/real-estates/'.$id);
+
+
+        $listing = $response->json();
+
+
+        // Get All listings for swiper
+        $response2 = Http::withHeaders([
+            'Authorization' => 'Bearer '.config('api.redberry'),
+        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/real-estates');
+
+        if ($response2->successful()) {
+            $listings = $response2->json();
+        } else {
+            dd($response2->status(), $response2->body());
+        }
+
+
+        return view('pages.singleListing', compact('listing', 'listings'));
+    }
+
+
+    public function delete(Request $request){
+
+
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.config('api.redberry'),
+        ])->delete('https://api.real-estate-manager.redberryinternship.ge/api/real-estates/'.$request->id);
+
+
+        return redirect()->route('real-estates.index')->with('alert_success','ლისტინგი წარმატებით წაიშალა');
+
+
     }
 
 }

@@ -48,6 +48,10 @@ sup {
     overflow: hidden;
 }
 
+
+
+
+
 .listing-type {
     position: absolute;
     left: 23px;
@@ -75,6 +79,8 @@ sup {
     border-radius: 14px 14px 0 0;
     background: lightgray 50% / cover no-repeat;
 }
+
+
 
 .listing-details-wrapper {
     display: flex;
