@@ -168,7 +168,6 @@
 
 .range-input {
     max-width: 115px;
-    height: 17px;
     border: 1px solid #fff;
     flex: 1 0 0;
     color: rgba(2, 21, 38, 0.40);
@@ -177,6 +176,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    height: 100%;
 }
 
 

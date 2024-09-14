@@ -143,3 +143,14 @@ sup {
     align-items: center;
 
 }
+
+.price-range-input{
+    color: rgba(2, 21, 38, 0.80);
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+

@@ -70,8 +70,6 @@ selectRegionBtn.addEventListener('click', (event) => {
             }
         })
     }
-
-
 });
 
 
@@ -88,7 +86,6 @@ if (sessionRegions){
         if (sessionRegions.includes(checkbox.value)) {
             checkbox.checked = true;
         }
-
     })
 }
 

@@ -169,7 +169,9 @@
     <script src="{{asset('assets/js/dropdown.js')}}"></script>
     <script src="{{asset('assets/js/searchSelection.js')}}"></script>
     <script src="{{asset('assets/js/agentModal.js')}}"></script>
-    <script src="{{asset('assets/js/filter.js')}}"></script>
+{{--    <script src="{{asset('assets/js/filter.js')}}"></script>--}}
+    <script src="{{asset('assets/js/filterbyparams.js')}}"></script>
+
 @endif
 <script src="{{asset('assets/js/imageUpload.js')}}"></script>
 @if(request()->routeIs('real-estates.create'))

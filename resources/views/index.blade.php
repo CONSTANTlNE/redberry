@@ -1,69 +1,75 @@
 @extends('layout')
 
 
+{{--@dd(request()->maxprice)--}}
+
+{{--@dd($filteredlistings)--}}
 @section('index')
     <main style="width: 80%;">
         <div>
             <div class="top-wrapper">
 
-                <div class="select-wrapper">
+                <form class="select-wrapper">
                     {{--Regions--}}
-                    <form style="display: flex;flex-direction: column">
-                    <button type="button" class="select-btn select-btn-color " id="region_dropdown_btn">
-                        <span>რეგიონი</span>
-                        <svg id="region_svg" class="arrow-svg arrow-toggle" xmlns="http://www.w3.org/2000/svg"
-                             width="14"
-                             height="15" viewBox="0 0 14 15"
-                             fill="none">
-                            <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
-                                  fill="#021526"/>
-                        </svg>
+                    <div style="display: flex;flex-direction: column">
+                        <button type="button" class="select-btn select-btn-color " id="region_dropdown_btn">
+                            <span>რეგიონი</span>
 
-                    </button>
-                    <div id="region-dropdown-container">
-                        <div class="region-dropdown hidden" id="region_dropdown">
-                            <p class="dropdown-name">რეგიონის მიხედვით</p>
-                            <div class="region-items">
-                                @foreach($regions as $index => $region)
-                                    <div class="region">
-                                        <input name="region[]" id="region{{$index}}" data-name="{{$region['name']}}"
-                                               class="dropdown-checkbox regions-checkbox" value="{{$region['id']}}"
-                                               type="checkbox">
-                                        <label class="region-labels" for="region{{$index}}">{{$region['name']}}</label>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div style="margin-top:32px" class="select-btn-container">
-                                <button id="select-region" class="select-price-btn">არჩევა</button>
+                            <svg id="region_svg" class="arrow-svg arrow-toggle" xmlns="http://www.w3.org/2000/svg"
+                                 width="14"
+                                 height="15" viewBox="0 0 14 15"
+                                 fill="none">
+                                <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
+                                      fill="#021526"/>
+                            </svg>
+
+                        </button>
+                        <div id="region-dropdown-container">
+                            <div class="region-dropdown hidden" id="region_dropdown">
+                                <p class="dropdown-name">რეგიონის მიხედვით</p>
+                                <div class="region-items">
+                                    @foreach($regions as $index => $region)
+                                        <div class="region">
+                                            <input {{request()->region!=null && in_array($region['id'], request()->region) ? 'checked' : ''}} name="region[]"
+                                                   id="region{{$index}}" data-name="{{$region['name']}}"
+                                                   class="dropdown-checkbox regions-checkbox" value="{{$region['id']}}"
+                                                   type="checkbox">
+                                            <label class="region-labels"
+                                                   for="region{{$index}}">{{$region['name']}}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div style="margin-top:32px" class="select-btn-container">
+                                    <button id="select-region" class="select-price-btn">არჩევა</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </form>
 
                     {{--Price Range--}}
                     <div style="display: flex;flex-direction: column">
-                    <button type="button" class="select-btn select-btn-color inline-btn">
-                        <span>საფასო კატეგორია</span>
-                        <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
-                             height="15" viewBox="0 0 14 15"
-                             fill="none">
-                            <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
-                                  fill="#021526"/>
-                        </svg>
-
-
-                    </button>
+                        <button type="button" class="select-btn select-btn-color inline-btn">
+                            <span>საფასო კატეგორია</span>
+                            <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
+                                 height="15" viewBox="0 0 14 15"
+                                 fill="none">
+                                <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
+                                      fill="#021526"/>
+                            </svg>
+                        </button>
                         <div id="region-dropdown-container">
                             <div class="inline-dropdown hidden">
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">ფასის მიხედვით</p>
                                     <div class="range">
                                         <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="დან">
+                                            <input type="text" name="minprice" class="range-input"
+                                                   placeholder="დან" {{request()->has('minprice') ? 'value='.request()->minprice : ''}} >
                                             <span>₾</span>
                                         </div>
                                         <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="მდე">
+                                            <input type="text" name="maxprice" class="range-input"
+                                                   placeholder="მდე" {{request()->has('maxprice') ? 'value='.request()->maxprice : ''}}>
                                             <span>₾</span>
                                         </div>
                                     </div>
@@ -89,7 +95,7 @@
                                     </div>
 
                                     <div class="select-btn-container">
-                                        <span class="select-price-btn">არჩევა</span>
+                                        <button class="select-price-btn">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
@@ -98,28 +104,30 @@
 
                     {{--area Range--}}
                     <div style="display: flex;flex-direction: column">
-                    <button type="button" class="select-btn select-btn-color inline-btn">
-                        <span>ფართობი</span>
-                        <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
-                             height="15" viewBox="0 0 14 15"
-                             fill="none">
-                            <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
-                                  fill="#021526"/>
-                        </svg>
-
-
-                    </button>
+                        <button type="button" class="select-btn select-btn-color inline-btn">
+                            <span>ფართობი</span>
+                            <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
+                                 height="15" viewBox="0 0 14 15"
+                                 fill="none">
+                                <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
+                                      fill="#021526"/>
+                            </svg>
+                        </button>
                         <div id="region-dropdown-container">
                             <div class="inline-dropdown hidden">
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">ფართობის მიხედვით</p>
                                     <div class="range">
                                         <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="დან">
+                                            <input type="text"
+                                                   {{request()->minarea!=null ? 'value='.request()->minarea : ''}} name="minarea"
+                                                   class="range-input" placeholder="დან">
                                             <span>მ<sup>2</sup></span>
                                         </div>
                                         <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="მდე">
+                                            <input type="text"
+                                                   {{request()->maxarea!=null ? 'value='.request()->maxarea : ''}} name="maxarea"
+                                                   class="range-input" placeholder="მდე">
                                             <span>მ<sup>2</sup></span>
                                         </div>
                                     </div>
@@ -145,7 +153,7 @@
                                     </div>
 
                                     <div class="select-btn-container">
-                                        <span class="select-price-btn">არჩევა</span>
+                                        <button class="select-price-btn">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
@@ -154,60 +162,36 @@
 
                     {{--Rooms--}}
                     <div style="display: flex;flex-direction: column">
-                    <button type="button" class="select-btn select-btn-color inline-btn">
-                        <span>საძინებლების რაოდენობა</span>
-                        <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
-                             height="15" viewBox="0 0 14 15"
-                             fill="none">
-                            <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
-                                  fill="#021526"/>
-                        </svg>
+                        <button type="button" class="select-btn select-btn-color inline-btn">
+                            <span>საძინებლების რაოდენობა</span>
+                            <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
+                                 height="15" viewBox="0 0 14 15"
+                                 fill="none">
+                                <path d="M10.0876 9.66215C10.3154 9.88996 10.6847 9.88996 10.9125 9.66215C11.1403 9.43435 11.1403 9.065 10.9125 8.8372L7.41252 5.3372C7.18471 5.10939 6.81537 5.10939 6.58756 5.3372L3.08756 8.8372C2.85976 9.065 2.85976 9.43435 3.08756 9.66215C3.31537 9.88996 3.68471 9.88996 3.91252 9.66215L7.00004 6.57463L10.0876 9.66215Z"
+                                      fill="#021526"/>
+                            </svg>
 
-                    </button>
+                        </button>
                         <div id="region-dropdown-container">
 
                             <div class="inline-dropdown hidden">
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">საძინებლების რაოდენობა</p>
-                                    <div class="range">
-                                        <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="დან">
-                                            <span>₾</span>
-                                        </div>
-                                        <div class="range-box">
-                                            <input type="text" class="range-input" placeholder="მდე">
-                                            <span>₾</span>
+                                    <div style="width: 50px!important;" class="range">
+                                        <div style="width: 50px!important;" class="range-box">
+                                            <input style="width: 30px!important;"
+                                                   {{request()->bedrooms!=null ? 'value='.request()->bedrooms : '' }}  type="text"
+                                                   name="bedrooms" class="range-input">
                                         </div>
                                     </div>
-
-                                    <div class="prices">
-                                        <div class="price-list">
-                                            <p style="margin-bottom: 16px">მინ. ფასი</p>
-                                            <p class="min-price">50,000 ₾</p>
-                                            <p class="min-price">100,000 ₾</p>
-                                            <p class="min-price">150,000 ₾</p>
-                                            <p class="min-price">200,000 ₾</p>
-                                            <p class="min-price">300,000 ₾</p>
-                                        </div>
-                                        <div class="price-list">
-                                            <p style="margin-bottom: 16px">მაქს. ფასი</p>
-                                            <p class="min-price">50,000 ₾</p>
-                                            <p class="min-price">100,000 ₾</p>
-                                            <p class="min-price">150,000 ₾</p>
-                                            <p class="min-price">200,000 ₾</p>
-                                            <p class="min-price">300,000 ₾</p>
-
-                                        </div>
-                                    </div>
-
                                     <div class="select-btn-container">
-                                        <span class="select-price-btn">არჩევა</span>
+                                        <button class="select-price-btn">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
                 <div class="top-buttons-wrapper">
                     <a href="{{route('real-estates.create')}}" class="listing-button">+ ლისტინგის დამატება</a>
@@ -218,28 +202,77 @@
 
             <form class="search-wrapper" action="">
 
-                <div id="area-container" class="search-item-wrapper">
-                    <input id="area" type="hidden" value="" name="area">
-                    <div style="display: flex; align-items: center">
-                        <span class="searchable" id="min_area">55 მ<sup>2</sup></span>
-                        <span style="margin: 0 5px"> - </span>
-                        <span class="searchable" id="max_area">70 მ<sup>2</sup></span>
+                {{-- Regions--}}
+                @if(request()->has('region'))
+                    @foreach($regions as $region2)
+                        @if(in_array($region2['id'],request()->region))
+                            <div class="search-item-wrapper">
+                                <input id="region" type="hidden" value="{{$region2['id']}}" name="region">
+                                <span class="searchable">{{$region2['name']}}</span>
+                                <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15"
+                                     viewBox="0 0 14 15"
+                                     fill="none">
+                                    <path d="M10.5 4L3.5 11" stroke="#354451" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M3.5 4L10.5 11" stroke="#354451" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
+                {{-- PriceRange--}}
+                @if(request()->maxprice!=null && request()->minprice!=null)
+                    <div id="area-container" class="search-item-wrapper">
+
+                        <div style="display: flex; align-items: center">
+                            <input type="hidden" value="{{request()->minprice}}" name="minprice">
+                            <span class="searchable">{{request()->minprice}}<span>₾</span></span>
+                            <span style="margin: 0 5px"> - </span>
+                            <span class="searchable">{{request()->maxprice}}<span>₾</span></span>
+                            <input type="hidden" value="{{request()->maxprice}}" name="maxprice">
+
+                        </div>
+
+                        <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15"
+                             viewBox="0 0 14 15"
+                             fill="none">
+                            <path d="M10.5 4L3.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.5 4L10.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15"
-                         viewBox="0 0 14 15"
-                         fill="none">
-                        <path d="M10.5 4L3.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M3.5 4L10.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
+                @endif
+                {{-- AreaRange--}}
+                @if(request()->minarea!=null && request()->maxarea!=null)
+                    <div id="area-container" class="search-item-wrapper">
+                        <input id="area" type="hidden" value="" name="area">
+                        <div style="display: flex; align-items: center">
+                            <span class="searchable" id="min_area">{{request()->minarea}} მ<sup>2</sup></span>
+                            <input name="min_area" value="{{request()->minarea}}" type="hidden">
+                            <span style="margin: 0 5px"> - </span>
+                            <input name="max_area" value="{{request()->maxarea}}" type="hidden">
+                            <span class="searchable" id="max_area">{{request()->maxarea}} მ<sup>2</sup></span>
+                        </div>
+                        <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15"
+                             viewBox="0 0 14 15"
+                             fill="none">
+                            <path d="M10.5 4L3.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.5 4L10.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                @endif
 
-
-         <button  onclick="sessionStorage.clear()">clear session</button>
+                <a href="{{route('real-estates.index')}}" class="search-item-wrapper">
+                    <span class="searchable">გასუფთავება</span>
+                </a>
             </form>
         </div>
 
+
         <section class="listing-section">
-            @foreach($listings as $listing)
+
+
+            @foreach($filteredlistings as $listing)
 
                 <div data-listing-id="{{$listing['id']}}" class="listing-item">
                     <div class="listing-img-wrapper">
@@ -251,15 +284,16 @@
                             @php
                                 $price = $listing['price'];
                                 $formated_price = number_format($price, 0, '.', ' ');
-                              @endphp
+                            @endphp
                             <p class="listing-price"><span>{{$formated_price}}</span> <span>₾</span></p>
                             <div class="listing-address">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                     fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                           d="M5.05025 4.05025C7.78392 1.31658 12.2161 1.31658 14.9497 4.05025C17.6834 6.78392 17.6834 11.2161 14.9497 13.9497L10 18.8995L5.05025 13.9497C2.31658 11.2161 2.31658 6.78392 5.05025 4.05025ZM10 11C11.1046 11 12 10.1046 12 9C12 7.89543 11.1046 7 10 7C8.89543 7 8 7.89543 8 9C8 10.1046 8.89543 11 10 11Z"
                                           fill="#021526" fill-opacity="0.5"/>
                                 </svg>
-                                <p >{{$listing['city']['region']['name']}},</p>
+                                <p>{{$listing['city']['region']['name']}},</p>
                                 <p>{{$listing['address']}}</p>
                             </div>
                         </div>
@@ -298,6 +332,14 @@
                 </div>
 
             @endforeach
+
+
+            @if((request()->has('region') || request()->has('minarea') || request()->has('maxarea') || request()->has('minprice') || request()->has('maxprice')  || request()->has('bedrooms')  )   && count($filteredlistings)===0)
+                <p>ჩანაწერი არ მოიძებნა</p>
+            @endif
+
+
+
         </section>
     </main>
 @endsection

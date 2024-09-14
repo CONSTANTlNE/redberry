@@ -22,7 +22,8 @@ const select_region_btn=document.getElementById("select-region");
         checkedRegions.forEach((checkedRegion) => {
 
             search_form.innerHTML +=
-                `<div class="search-item-wrapper">
+                `
+<div class="search-item-wrapper">
             <input id="region" type="hidden" value="${checkedRegion.value}" name="region">
             <span class="searchable">${checkedRegion.dataset.name}</span>
             <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15"
@@ -31,6 +32,7 @@ const select_region_btn=document.getElementById("select-region");
                 <path d="M3.5 4L10.5 11" stroke="#354451" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
+        
         `
 
         });
