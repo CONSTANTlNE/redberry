@@ -166,3 +166,288 @@ regioncheckboxes.forEach((checkbox, index) => {
         uncheckedsvg[index].style.display='block';
     }
 })
+
+
+
+
+
+// ================ PRICERANGE VALIDATION ========================
+
+
+const minprices=document.querySelectorAll('[data-min-price]')
+const maxprices=document.querySelectorAll('[data-max-price]')
+const rangebtn=document.getElementById('pricerangesubmit')
+
+
+
+//  Price Range Validation on Predefined prices click
+
+minprices.forEach((ggg, index) => {
+
+    ggg.addEventListener('click', () => {
+     document.querySelector('input[name="minprice"]').value=minprices[index].dataset.minPrice
+
+        if(parseInt(document.querySelector('input[name="minprice"]').value) > parseInt(document.querySelector('input[name="maxprice"]').value)){
+
+            document.querySelector('.maxpricerange').style.border='2px solid red'
+            rangebtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxpricerange').style.border="1px solid #808A93"
+            rangebtn.setAttribute('type', 'submit')
+        }
+    })
+})
+
+maxprices.forEach((bbb, index) => {
+    bbb.addEventListener('click', () => {
+
+        document.querySelector('input[name="maxprice"]').value=maxprices[index].dataset.maxPrice
+
+        if(parseInt(document.querySelector('input[name="minprice"]').value) > parseInt(document.querySelector('input[name="maxprice"]').value)){
+
+            document.querySelector('.maxpricerange').style.border='2px solid red'
+            rangebtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxpricerange').style.border="1px solid #808A93"
+            rangebtn.setAttribute('type', 'submit')
+        }
+    })
+})
+
+// Price Range Validation on INPUT
+
+document.querySelector('input[name="minprice"]').addEventListener('input', (event) => {
+    const mininput = event.target.value;
+    const numericValue = parseInt(mininput);
+    if (isNaN(numericValue)) {
+        console.log(isNaN(numericValue))
+
+         console.log(  document.querySelector('.minrpricerange')
+         )
+        document.querySelector('.minrpricerange').style.border='2px solid red'
+        rangebtn.setAttribute('type', 'button')
+
+
+    } else {
+        document.querySelector('.minrpricerange').style.border="1px solid #808A93"
+        rangebtn.setAttribute('type', 'submit')
+
+        if(parseInt(document.querySelector('input[name="minprice"]').value) > parseInt(document.querySelector('input[name="maxprice"]').value)){
+
+            document.querySelector('.maxpricerange').style.border='2px solid red'
+            rangebtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxpricerange').style.border="1px solid #808A93"
+            rangebtn.setAttribute('type', 'submit')
+        }
+    }
+
+
+
+
+
+
+
+});
+
+document.querySelector('input[name="maxprice"]').addEventListener('input', (event) => {
+    const maxinput = event.target.value;
+
+    // Convert the value to a number
+    const numericValue = parseFloat(maxinput);
+    console.log(isNaN(numericValue))
+    // Check if the value is not a valid integer
+    if (isNaN(numericValue)) {
+        console.log('its nan')
+        document.querySelector('.maxpricerange').style.border='2px solid red'
+        rangebtn.setAttribute('type', 'button')
+
+
+    } else {
+        document.querySelector('.maxpricerange').style.border="1px solid #808A93"
+        rangebtn.setAttribute('type', 'submit')
+
+        if(parseInt(document.querySelector('input[name="minprice"]').value) > parseInt(document.querySelector('input[name="maxprice"]').value)){
+
+            document.querySelector('.maxpricerange').style.border='2px solid red'
+            rangebtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxpricerange').style.border="1px solid #808A93"
+            rangebtn.setAttribute('type', 'submit')
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+});
+
+
+
+// ================ DateRange VALIDATION ========================
+
+
+// Date Range Validation on INPUT
+
+const minareas=document.querySelectorAll('[data-min-area]')
+const maxareas=document.querySelectorAll('[data-max-area]')
+const areabtn=document.querySelector('.pricerangesubmit')
+
+
+//  AREA Range Validation on Predefined prices click
+
+minareas.forEach((ggg, index) => {
+
+    ggg.addEventListener('click', () => {
+        document.querySelector('input[name="minarea"]').value=minareas[index].dataset.minArea
+
+        if(parseInt(document.querySelector('input[name="minarea"]').value) > parseInt(document.querySelector('input[name="maxarea"]').value)){
+
+            document.querySelector('.maxarearange').style.border='2px solid red'
+            areabtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxarearange').style.border="1px solid #808A93"
+            areabtn.setAttribute('type', 'submit')
+        }
+    })
+})
+
+maxareas.forEach((bbb, index) => {
+    bbb.addEventListener('click', () => {
+
+        document.querySelector('input[name="maxarea"]').value=maxareas[index].dataset.maxArea
+
+        if(parseInt(document.querySelector('input[name="minarea"]').value) > parseInt(document.querySelector('input[name="maxarea"]').value)){
+
+            document.querySelector('.maxarearange').style.border='2px solid red'
+            areabtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxarearange').style.border="1px solid #808A93"
+            areabtn.setAttribute('type', 'submit')
+        }
+    })
+})
+
+
+
+
+
+// AREA Range Validation on INPUT
+
+document.querySelector('input[name="minarea"]').addEventListener('input', (event) => {
+    const mininput2 = event.target.value;
+    const numericValue2 = parseInt(mininput2);
+    if (isNaN(numericValue2)) {
+
+
+        document.querySelector('.minarearange').style.border='2px solid red'
+        areabtn.setAttribute('type', 'button')
+
+
+    } else {
+        document.querySelector('.minarearange').style.border="1px solid #808A93"
+        areabtn.setAttribute('type', 'submit')
+
+        if(parseInt(document.querySelector('input[name="minarea"]').value) > parseInt(document.querySelector('input[name="maxarea"]').value)){
+
+            document.querySelector('.maxarearange').style.border='2px solid red'
+            areabtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxarearange').style.border="1px solid #808A93"
+            areabtn.setAttribute('type', 'submit')
+        }
+    }
+
+
+
+
+
+
+
+});
+
+document.querySelector('input[name="maxarea"]').addEventListener('input', (event) => {
+    const maxinput2 = event.target.value;
+
+    // Convert the value to a number
+    const numericValue = parseFloat(maxinput2);
+
+    // Check if the value is not a valid integer
+    if (isNaN(numericValue)) {
+
+        document.querySelector('.maxarearange').style.border='2px solid red'
+        areabtn.setAttribute('type', 'button')
+
+
+    } else {
+        document.querySelector('.maxarearange').style.border="1px solid #808A93"
+        areabtn.setAttribute('type', 'submit')
+
+        if(parseInt(document.querySelector('input[name="minarea"]').value) > parseInt(document.querySelector('input[name="maxarea"]').value)){
+
+            document.querySelector('.maxarearange').style.border='2px solid red'
+            areabtn.setAttribute('type', 'button')
+
+
+        } else {
+            document.querySelector('.maxarearange').style.border="1px solid #808A93"
+            areabtn.setAttribute('type', 'submit')
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+});
+
+
+
+// ROOMS VALIDATIOM
+
+
+const roomsbtn=document.querySelector('.roomsbtn')
+
+document.querySelector('input[name="bedrooms"]').addEventListener('input', (event) => {
+    const rooms = event.target.value;
+    const numericValue2 = parseInt(rooms);
+    if (isNaN(numericValue2)) {
+
+
+        document.querySelector('.roomsbox').style.border='2px solid red'
+        roomsbtn.setAttribute('type', 'button')
+
+
+    } else {
+        document.querySelector('.roomsbox').style.border="1px solid #808A93"
+        roomsbtn.setAttribute('type', 'submit')
+
+
+    }
+
+});

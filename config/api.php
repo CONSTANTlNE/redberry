@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'redberry' => env('redberry_token'),
+    'redberry' => env('REDBERRY_TOKEN'),
 ];

@@ -135,3 +135,7 @@ label {
     font-weight: 400;
     line-height: normal;
 }
+
+[data-min-price], [data-max-price] ,[data-min-area], [data-max-area] {
+    cursor: pointer;
+}

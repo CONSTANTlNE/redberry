@@ -77,13 +77,13 @@
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">ფასის მიხედვით</p>
                                     <div class="range">
-                                        <div class="range-box">
-                                            <input type="text" name="minprice" class="range-input"
+                                        <div class="range-box minrpricerange">
+                                            <input style="border:none;outline: none;" type="text" name="minprice" class="range-input"
                                                    placeholder="დან" {{request()->has('minprice') ? 'value='.request()->minprice : ''}} >
                                             <span>₾</span>
                                         </div>
-                                        <div class="range-box">
-                                            <input type="text" name="maxprice" class="range-input"
+                                        <div class="range-box maxpricerange">
+                                            <input style="border:none;outline: none;" type="text" name="maxprice" class="range-input"
                                                    placeholder="მდე" {{request()->has('maxprice') ? 'value='.request()->maxprice : ''}}>
                                             <span>₾</span>
                                         </div>
@@ -92,25 +92,24 @@
                                     <div class="prices">
                                         <div class="price-list">
                                             <p class="rangecss" style="margin-bottom: 16px">მინ. ფასი</p>
-                                            <p class="min-price">50,000 ₾</p>
-                                            <p class="min-price">100,000 ₾</p>
-                                            <p class="min-price">150,000 ₾</p>
-                                            <p class="min-price">200,000 ₾</p>
-                                            <p class="min-price">300,000 ₾</p>
+                                            <p  data-min-price="500" class="min-price">500 ₾</p>
+                                            <p data-min-price="20000" class="min-price">20,000 ₾</p>
+                                            <p data-min-price="30000" class="min-price">30,000 ₾</p>
+                                            <p data-min-price="60000" class="min-price">60,000 ₾</p>
+                                            <p data-min-price="100000" class="min-price">100,000 ₾</p>
                                         </div>
                                         <div class="price-list">
                                             <p  class="rangecss" style="margin-bottom: 16px">მაქს. ფასი</p>
-                                            <p class="min-price">50,000 ₾</p>
-                                            <p class="min-price">100,000 ₾</p>
-                                            <p class="min-price">150,000 ₾</p>
-                                            <p class="min-price">200,000 ₾</p>
-                                            <p class="min-price">300,000 ₾</p>
-
+                                            <p data-max-price="2000" class="min-price">2 000 ₾</p>
+                                            <p data-max-price="40000" class="min-price">40,000 ₾</p>
+                                            <p data-max-price="60000" class="min-price">60,000 ₾</p>
+                                            <p data-max-price="100000" class="min-price">100,000 ₾</p>
+                                            <p data-max-price="250000" class="min-price">250,000 ₾</p>
                                         </div>
                                     </div>
 
                                     <div class="select-btn-container">
-                                        <button class="select-price-btn">არჩევა</button>
+                                        <button id="pricerangesubmit" class="select-price-btn">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
@@ -133,14 +132,14 @@
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">ფართობის მიხედვით</p>
                                     <div class="range">
-                                        <div class="range-box">
-                                            <input type="text"
+                                        <div class="range-box minarearange">
+                                            <input style="border:none; outline: none;" type="text"
                                                    {{request()->minarea!=null ? 'value='.request()->minarea : ''}} name="minarea"
                                                    class="range-input" placeholder="დან">
                                             <span>მ<sup>2</sup></span>
                                         </div>
-                                        <div class="range-box">
-                                            <input type="text"
+                                        <div class="range-box maxarearange">
+                                            <input style="border:none;outline: none;" type="text"
                                                    {{request()->maxarea!=null ? 'value='.request()->maxarea : ''}} name="maxarea"
                                                    class="range-input" placeholder="მდე">
                                             <span>მ<sup>2</sup></span>
@@ -150,25 +149,25 @@
                                     <div class="prices">
                                         <div   class="price-list">
                                             <p class="rangecss" style="margin-bottom: 16px">მინ. მ<sup>2</sup></p>
-                                            <p class="min-price">50,000 მ<sup>2</sup></p>
-                                            <p class="min-price">100,000 მ<sup>2</sup></p>
-                                            <p class="min-price">150,000 მ<sup>2</sup></p>
-                                            <p class="min-price">200,000 მ<sup>2</sup></p>
-                                            <p class="min-price">300,000 მ<sup>2</sup></p>
+                                            <p  data-min-area="20" class="min-price">20 მ<sup>2</sup></p>
+                                            <p data-min-area="50" class="min-price">50 მ<sup>2</sup></p>
+                                            <p data-min-area="70" class="min-price">70 მ<sup>2</sup></p>
+                                            <p data-min-area="80" class="min-price">80 მ<sup>2</sup></p>
+                                            <p data-min-area="100" class="min-price">100 მ<sup>2</sup></p>
                                         </div>
                                         <div  class="price-list">
                                             <p class="rangecss"  style="margin-bottom: 16px">მაქს. მ<sup>2</sup></p>
-                                            <p class="min-price">50,000 მ<sup>2</sup></p>
-                                            <p class="min-price">100,000 მ<sup>2</sup></p>
-                                            <p class="min-price">150,000 მ<sup>2</sup></p>
-                                            <p class="min-price">200,000 მ<sup>2</sup></p>
-                                            <p class="min-price">300,000 მ<sup>2</sup></p>
+                                            <p data-max-area="50" class="min-price">50 მ<sup>2</sup></p>
+                                            <p data-max-area="70" class="min-price">70 მ<sup>2</sup></p>
+                                            <p data-max-area="80" class="min-price">80 მ<sup>2</sup></p>
+                                            <p data-max-area="100" class="min-price">100 მ<sup>2</sup></p>
+                                            <p data-max-area="150" class="min-price">150 მ<sup>2</sup></p>
 
                                         </div>
                                     </div>
 
                                     <div class="select-btn-container">
-                                        <button class="select-price-btn">არჩევა</button>
+                                        <button class="select-price-btn pricerangesubmit">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
@@ -193,14 +192,14 @@
                                 <div class="price-range-wrapper">
                                     <p class="dropdown-name">საძინებლების რაოდენობა</p>
                                     <div style="width: 50px!important;" class="range">
-                                        <div style="width: 50px!important;" class="range-box">
-                                            <input style="width: 30px!important;"
+                                        <div style="width: 50px!important;" class="range-box roomsbox">
+                                            <input  style="width: 30px!important;outline: none;border:none;"
                                                    {{request()->bedrooms!=null ? 'value='.request()->bedrooms : '' }}  type="text"
                                                    name="bedrooms" class="range-input">
                                         </div>
                                     </div>
                                     <div class="select-btn-container">
-                                        <button class="select-price-btn">არჩევა</button>
+                                        <button class="select-price-btn roomsbtn">არჩევა</button>
                                     </div>
                                 </div>
                             </div>
@@ -242,11 +241,11 @@
                     <div id="area-container" class="search-item-wrapper search-pricerange">
 
                         <div style="display: flex; align-items: center">
-                            <input type="hidden" value="{{request()->minprice}}" name="minprice">
+
                             <span class="searchable">{{request()->minprice}}<span>₾</span></span>
                             <span style="margin: 0 5px"> - </span>
                             <span class="searchable">{{request()->maxprice}}<span>₾</span></span>
-                            <input type="hidden" value="{{request()->maxprice}}" name="maxprice">
+
 
                         </div>
 

@@ -18,7 +18,6 @@ class AgentsController extends Controller
         ])->get('https://api.real-estate-manager.redberryinternship.ge/api/agents');
 
 
-        dd($response->json());
     }
 
     public function create(Request $request)
