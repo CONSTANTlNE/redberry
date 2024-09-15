@@ -9,87 +9,13 @@
 
     <style>
 
-        @font-face {
-            font-family: 'FiraGO';
-            font-style: normal;
-            font-display: swap;
-            font-weight: 400;
-            src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff) format('woff');
-        }
-
-        /* firago-latin-500-normal */
-        @font-face {
-            font-family: 'FiraGO';
-            font-style: normal;
-            font-display: swap;
-            font-weight: 500;
-            src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff) format('woff');
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            max-width: 1920px;
-
-        }
-
-        header {
-            width: 80%;
-            margin-top: 32px;
-            margin-bottom: 77px;
-        }
-
-        label {
-            cursor: pointer;
-        }
-
-
-        .top-buttons-wrapper {
-            height: 47px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .listing-button {
-            all: unset;
-            background: #F93B1D;
-            border: 1px #F93B1D;
-            color: white;
-            border-radius: 10px;
-            padding: 10px 16px 10px 16px;
-            cursor: pointer;
-        }
-
-        .agent-button {
-            border-radius: 10px;
-            color: #F93B1D;
-            border: 1px solid #F93B1D;
-            background: white;
-            padding: 10px 16px 10px 16px;
-            cursor: pointer;
-        }
-
-        .listing-button:hover {
-            border-radius: 10px;
-            background: #DF3014;
-        }
-
-        .agent-button:hover {
-            border-radius: 10px;
-            border: 1px solid #F93B1D;
-            background: #F93B1D;
-            color: #FFF;
-        }
-
 
 
 
     </style>
 
 
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dropdown.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/agentModal.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/createListing.css')}}">
@@ -122,7 +48,9 @@
 </header>
 
 
+
 @yield('index')
+
 @yield('add-listing')
 @yield('singleListing')
 @include('components.agentmodal')
@@ -178,6 +106,11 @@
     <script src="{{asset('assets/js/listingValidation.js')}}"></script>
 @endif
 <script src="{{asset('assets/js/custom-htmx.js')}}"></script>
+
+@if(request()->routeIs('real-estates.show'))
+<script src="{{asset('assets/js/slider.js')}}"></script>
+@endif
+
 
 
 

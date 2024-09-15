@@ -80,7 +80,7 @@ inlineBtns.forEach(function (inlineBtn, index) {
     inlineBtn.addEventListener('click', function (event) {
         event.stopPropagation();
         closeDropdown();
-console.log('clicked');
+
         if (currentlyOpenIndex !== null && currentlyOpenIndex !== index) {
             // Close the previously opened dropdown
             inlineDropdowns[currentlyOpenIndex].classList.remove('inline-flex');
@@ -120,7 +120,7 @@ console.log('clicked');
 // Close dropdown when clicking outside
 document.addEventListener('click', (event)=> {
 
-    console.log(event.target)
+    // console.log(event.target)
     if (currentlyOpenIndex !== null && !event.target.closest('.inline-dropdown') || event.target.classList.contains('select-price-btn') ) {
         inlineDropdowns[currentlyOpenIndex].classList.remove('inline-flex');
         inlineDropdowns[currentlyOpenIndex].classList.add('hidden');
@@ -133,3 +133,36 @@ document.addEventListener('click', (event)=> {
 
 }, true);
 
+
+
+// Customizing Region Checkboxes
+
+const regionlabels=document.querySelectorAll('.region-labels')
+const regioncheckboxes=document.querySelectorAll('.regions-checkbox')
+
+const checkedsvg=document.querySelectorAll('.chekedsvg')
+const uncheckedsvg=document.querySelectorAll('.uncheckedsvg')
+
+regioncheckboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('click', () => {
+        if (regioncheckboxes[index].checked) {
+            regionlabels[index].classList.add('checked-label');
+            checkedsvg[index].style.display='block';
+            uncheckedsvg[index].style.display='none';
+        } else {
+            checkedsvg[index].style.display='none';
+            uncheckedsvg[index].style.display='block';
+        }
+    })
+})
+
+regioncheckboxes.forEach((checkbox, index) => {
+    if (regioncheckboxes[index].checked) {
+        regionlabels[index].classList.add('checked-label');
+        checkedsvg[index].style.display='block';
+        uncheckedsvg[index].style.display='none';
+    } else {
+        checkedsvg[index].style.display='none';
+        uncheckedsvg[index].style.display='block';
+    }
+})

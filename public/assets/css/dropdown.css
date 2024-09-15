@@ -196,15 +196,20 @@
     gap: 8px;
 }
 
-.prices p {
-    margin: 0;
-    color: #2D3648;
+
+.rangecss{
+    color: #021526;
     font-family: FiraGO;
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
 }
+
+.prices p{
+    margin:0;
+}
+
 
 .select-btn-container {
     width: 100%;
@@ -253,6 +258,7 @@
     border-radius: 43px;
     border: 1px solid #DBDBDB;
     background: #FFF;
+    cursor: pointer;
 }
 
 .searchable{

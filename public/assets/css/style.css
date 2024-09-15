@@ -1,0 +1,137 @@
+
+
+@font-face {
+    font-family: 'FiraGO';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-400-normal.woff) format('woff');
+}
+
+/* firago-latin-500-normal */
+@font-face {
+    font-family: 'FiraGO';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/firago@latest/latin-500-normal.woff) format('woff');
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    max-width: 1920px;
+
+}
+
+header {
+    width: 80%;
+    margin-top: 32px;
+    margin-bottom: 77px;
+}
+
+label {
+    cursor: pointer;
+}
+
+
+.errortext{
+    margin-top: 50px;
+    color: rgba(2, 21, 38, 0.80);
+
+    font-family: FiraGO;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+
+}
+
+.clear-text{
+    color: #021526;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+
+
+.top-buttons-wrapper {
+    height: 47px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.buttonstyle1{
+    all: unset;
+    background: #F93B1D;
+    border: 1px #F93B1D;
+    border-radius: 10px;
+    padding: 10px 16px 10px 16px;
+    cursor: pointer;
+
+    color: #FFF;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.buttonstyle2 {
+    border-radius: 10px;
+
+    border: 1px solid #F93B1D;
+    background: white;
+    padding: 10px 16px 10px 16px;
+    cursor: pointer;
+
+    color: #F93B1D;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.buttonstyle1:hover {
+    border-radius: 10px;
+    background: #DF3014;
+}
+
+.buttonstyle2:hover {
+    border-radius: 10px;
+    border: 1px solid #F93B1D;
+    background: #F93B1D;
+    color: #FFF;
+}
+
+.select-btn{
+    color: #021526;
+    text-align: center;
+    font-family: FiraGO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.region-labels{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

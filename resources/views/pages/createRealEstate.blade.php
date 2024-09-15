@@ -186,7 +186,6 @@
                     <label class="label" for="agent_id">აირჩიე</label>
                     <select name="agent_id" class="agent-input" id="agent_id">
                         <option value="">აირჩიეთ აგენტი</option>
-                        <option value="">დაამატე აგენტი</option>
                         @foreach($agents as $agent)
                             <option value="{{ $agent['id'] }}">{{ $agent['name'] }}</option>
                         @endforeach
@@ -200,8 +199,8 @@
 
         <div class="real-estate-form-buttons">
             <div class="modal-buttons-wrapper">
-                <button type="button" id="close-agent-modal" class="cancel-btn">გაუქმება</button>
-                <button id="close-agent-modal" class="add-btn">დაამატე აგენტი</button>
+                <button type="button" id="close-agent-modal" class="buttonstyle2">გაუქმება</button>
+                <button id="close-agent-modal" class="buttonstyle1">დაამატე აგენტი</button>
             </div>
         </div>
         <input style="display: none" name="image" type="file" id="imageUpload">

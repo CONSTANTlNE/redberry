@@ -4,42 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
-use function PHPUnit\Framework\isEmpty;
 
 class RealEstatesController extends Controller
 {
     public function index(Request $request)
     {
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.config('api.redberry'),
-        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
+        // Cache regions for 30 minutes
+        $regions = Cache::remember('regions', 30 * 60, function () {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . config('api.redberry'),
+            ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
 
-        if ($response->successful()) {
-            $regions = $response->json();
-        } else {
-            dd($response->status(), $response->body());
-        }
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                dd($response->status(), $response->body());
+            }
+        });
 
+        // Cache listings for 30 minutes
+        $listings = Cache::remember('listings', 30 * 60, function () {
+            $response2 = Http::withHeaders([
+                'Authorization' => 'Bearer ' . config('api.redberry'),
+            ])->get('https://api.real-estate-manager.redberryinternship.ge/api/real-estates');
 
-        $response2 = Http::withHeaders([
-            'Authorization' => 'Bearer '.config('api.redberry'),
-        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/real-estates');
-
-        if ($response2->successful()) {
-            $listings = $response2->json();
-        } else {
-            dd($response2->status(), $response2->body());
-        }
-
+            if ($response2->successful()) {
+                return $response2->json();
+            } else {
+                dd($response2->status(), $response2->body());
+            }
+        });
 
         // START FILTERING
-
-
         $filteredregions  = [];
         $filteredlistings = $listings; // Start with all listings
 
-// Filter by region if provided
+        // Filter by region if provided
         if ($request->has('region')) {
             $requestregions   = $request->region;
             $filteredlistings = [];
@@ -57,7 +59,7 @@ class RealEstatesController extends Controller
             }
         }
 
-// Filter by price range if provided
+        // Filter by price range if provided
         if ($request->has('minprice') && $request->minprice != null && $request->has('maxprice') && $request->maxprice != null) {
             $minPrice = $request->minprice;
             $maxPrice = $request->maxprice;
@@ -67,7 +69,7 @@ class RealEstatesController extends Controller
             });
         }
 
-// Filter by area if provided
+        // Filter by area if provided
         if ($request->has('minarea') && $request->minarea != null && $request->has('maxarea') && $request->maxarea != null) {
             $minArea = (float) $request->minarea;
             $maxArea = (float) $request->maxarea;
@@ -77,7 +79,7 @@ class RealEstatesController extends Controller
             });
         }
 
-// Filter by rooms if provided
+        // Filter by rooms if provided
         if ($request->has('bedrooms') && $request->bedrooms != null) {
             $rooms = $request->bedrooms;
 
@@ -86,48 +88,58 @@ class RealEstatesController extends Controller
             });
         }
 
-
-// If no filters are applied, return all listings
+        // If no filters are applied, return all listings
         if (!$request->has('region') && !$request->has('minprice') && !$request->has('maxprice') && !$request->has('minarea') && !$request->has('maxarea') && !$request->has('rooms')) {
             $filteredlistings = $listings;
         }
-
 
         return view('index', compact('regions', 'listings', 'filteredregions', 'filteredlistings'));
     }
 
     public function create()
     {
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.config('api.redberry'),
-        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
 
-        if ($response->successful()) {
-            $regions = $response->json();
-        } else {
-            dd($response->status(), $response->body());
-        }
+        $regions = Cache::remember('regions', 30 * 60, function () {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . config('api.redberry'),
+            ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                dd($response->status(), $response->body());
+            }
+        });
 
 
-        $response2 = Http::withHeaders([
-            'Authorization' => 'Bearer '.config('api.redberry'),
-        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/cities');
 
-        if ($response2->successful()) {
-            $cities = $response2->json();
-        } else {
-            dd($response2->status(), $response2->body());
-        }
+        $cities = Cache::remember('cities', 30 * 60, function () {
+            $response2 = Http::withHeaders([
+                'Authorization' => 'Bearer '.config('api.redberry'),
+            ])->get('https://api.real-estate-manager.redberryinternship.ge/api/cities');
 
-        $response3 = Http::withHeaders([
-            'Authorization' => 'Bearer '.config('api.redberry'),
-        ])->get('https://api.real-estate-manager.redberryinternship.ge/api/agents');
+            if ($response2->successful()) {
+                return $response2->json();
+            } else {
+                dd($response2->status(), $response2->body());
+            }
+        });
 
-        if ($response3->successful()) {
-            $agents = $response3->json();
-        } else {
-            dd($response3->status(), $response3->body());
-        }
+
+
+
+        $agents = Cache::remember('agents', 30 * 60, function () {
+            $response3 = Http::withHeaders([
+                'Authorization' => 'Bearer '.config('api.redberry'),
+            ])->get('https://api.real-estate-manager.redberryinternship.ge/api/agents');
+
+            if ($response3->successful()) {
+              return $response3->json();
+            } else {
+                dd($response3->status(), $response3->body());
+            }
+        });
+
 
 
         return view('pages.createRealEstate', compact('regions', 'cities', 'agents'));
@@ -158,9 +170,19 @@ class RealEstatesController extends Controller
         ]);
 
 
+        // When a listing is updated
+        Cache::forget('listings');
+
+
+
+
         if (!$response->successful()) {
             return back()->with('alert_error', 'რაღაც შეცდომა');
         }
+
+
+
+
 
 
         return back()->with('alert_success', 'ლისტინგი წარმატებით დაემატა');
@@ -168,7 +190,6 @@ class RealEstatesController extends Controller
 
     public function show(Request $request, $id)
     {
-
         // Get single listing
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.config('api.redberry'),
@@ -193,19 +214,16 @@ class RealEstatesController extends Controller
         return view('pages.singleListing', compact('listing', 'listings'));
     }
 
-
-    public function delete(Request $request){
-
-
-
+    public function delete(Request $request)
+    {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.config('api.redberry'),
         ])->delete('https://api.real-estate-manager.redberryinternship.ge/api/real-estates/'.$request->id);
 
 
-        return redirect()->route('real-estates.index')->with('alert_success','ლისტინგი წარმატებით წაიშალა');
+        Cache::forget('listings');
 
-
+        return redirect()->route('real-estates.index')->with('alert_success', 'ლისტინგი წარმატებით წაიშალა');
     }
 
 }

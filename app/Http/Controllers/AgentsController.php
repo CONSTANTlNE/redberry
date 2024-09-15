@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class AgentsController extends Controller
@@ -37,6 +38,8 @@ class AgentsController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
         ]);
+
+         Cache::forget('agents');
 
 
          return back()->with('alert_success','აგენტი წარმატებით დაემატა');

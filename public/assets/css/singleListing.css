@@ -163,11 +163,21 @@
     color: #676E76;
     text-align: center;
     font-family: FiraGO;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
+
+.delete-listing:hover{
+
+    background: #808A93;
+    color: #FFF;
+
+}
+
+
+
 
 
 .swiper-button-prev::after, .swiper-button-next::after {
@@ -229,49 +239,8 @@ dialog::backdrop{
     gap:15px;
 }
 
-#closemodal{
 
 
-    display: inline-flex;
-    height: 47px;
-    padding: 10px 16px;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    border: 1px solid #F93B1D;
-
-    background: #FFF;
-    color: #F93B1D;
-    text-align: center;
-    font-family: FiraGO;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    cursor: pointer;
-}
-
-#confirmdelete{
-
-    padding: 10px 16px;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 10px;
-    background: #F93B1D;
-
-    color: #FFF;
-    text-align: center;
-    font-family: FiraGO;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    border: 1px solid #F93B1D;
-  cursor: pointer;
-}
 
 .deletetext{
     margin: 0;
