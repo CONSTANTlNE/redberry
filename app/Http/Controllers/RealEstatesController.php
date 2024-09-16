@@ -182,7 +182,7 @@ class RealEstatesController extends Controller
 
 
 
-        return back()->with('alert_success', 'ლისტინგი წარმატებით დაემატა');
+        return redirect()->route('real-estates.index')->with('alert_success', 'ლისტინგი წარმატებით დაემატა');
     }
 
     public function show(Request $request, $id)

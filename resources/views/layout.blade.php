@@ -38,13 +38,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
 
 
-    <style>
-
-
-
-    </style>
-
-
 </head>
 <div id="htmxerrors"></div>
 <body style=" display: flex; flex-direction: column;justify-content: center;align-items: center;">
@@ -101,8 +94,6 @@
     <script src="{{asset('assets/js/dropdown.js')}}"></script>
     <script src="{{asset('assets/js/searchSelection.js')}}"></script>
 
-    {{--    <script src="{{asset('assets/js/filter.js')}}"></script>--}}
-    <script src="{{asset('assets/js/filterbyparams.js')}}"></script>
 
 @endif
 

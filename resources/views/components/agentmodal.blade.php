@@ -92,8 +92,8 @@
         </div>
         <div class="modal-footer">
             <div class="modal-buttons-wrapper">
-                <button type="button" id="close-agent-modal" class="cancel-btn">გაუქმება</button>
-                <button id="close-agent-modal" class="add-btn">დაამატე აგენტი</button>
+                <button type="button" id="close-agent-modal" class="buttonstyle2">გაუქმება</button>
+                <button id="close-agent-modal" class="buttonstyle1">დაამატე აგენტი</button>
             </div>
         </div>
         <input style="display: none" name="file" type="file" {{request()->routeIs('real-estates.create') ? 'id=imageUpload2': 'id=imageUpload' }}>

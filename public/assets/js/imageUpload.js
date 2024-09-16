@@ -85,7 +85,7 @@ const uploadedImage2 = document.getElementById('uploadedAgentImage');
 const upload_icon2 = document.getElementById('agent-avatar-upload-icon-listing')
 const delete_icon2 = document.getElementById('agent-avatar-delete-icon-listing')
 const agent_avatar_validation2 = document.getElementById('agent-avatar-validation2')
-console.log(agent_avatar_validation2)
+
 
 
 function validateAvatar2(avatar2) {
@@ -113,6 +113,8 @@ console.log('fired')
 
     return true;
 }
+
+if(upload_icon2){
 
 
 upload_icon2.addEventListener('click', () => {
@@ -173,3 +175,4 @@ delete_icon2.addEventListener('click', (e) => {
     agent_avatar_validation2.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
     agent_avatar_validation2.style.color = 'red';
 })
+}
