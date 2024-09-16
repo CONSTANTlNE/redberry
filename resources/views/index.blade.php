@@ -306,6 +306,7 @@
         @if((request()->has('region') || request()->has('minarea') || request()->has('maxarea') || request()->has('minprice') || request()->has('maxprice')  || request()->has('bedrooms')  )   && count($filteredlistings)===0)
             <p class="errortext">აღნიშნული მონაცემებით განცხადება არ იძებნებაა</p>
         @else
+
             <section class="listing-section">
 
                 @foreach($filteredlistings as $listing)
@@ -373,6 +374,8 @@
                 @endforeach
 
             </section>
+
+
         @endif
 
 

@@ -10,6 +10,8 @@
     width: 770px;
     max-height: 630px;
     object-fit: cover;
+    border-top-right-radius: 14px ;
+    border-top-left-radius:14px ;
 }
 
 .listing-data-wrapper-single {

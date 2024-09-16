@@ -14,6 +14,9 @@ openAgentModal.addEventListener('click', () => {
 closeAgentModal.addEventListener('click', () => {
 
     agentModal.close();
+
+    agentForm.reset()
+
 })
 
 
