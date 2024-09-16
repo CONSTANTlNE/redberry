@@ -12,7 +12,7 @@ class RealEstatesController extends Controller
     public function index(Request $request)
     {
         // Cache regions for 30 minutes
-        $regions = Cache::remember('regions', 30 * 60, function () {
+        $regions = Cache::remember('regions', 300 * 60, function () {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . config('api.redberry'),
             ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
@@ -25,7 +25,7 @@ class RealEstatesController extends Controller
         });
 
         // Cache listings for 30 minutes
-        $listings = Cache::remember('listings', 30 * 60, function () {
+        $listings = Cache::remember('listings', 300 * 60, function () {
             $response2 = Http::withHeaders([
                 'Authorization' => 'Bearer ' . config('api.redberry'),
             ])->get('https://api.real-estate-manager.redberryinternship.ge/api/real-estates');
@@ -99,7 +99,7 @@ class RealEstatesController extends Controller
     public function create()
     {
 
-        $regions = Cache::remember('regions', 30 * 60, function () {
+        $regions = Cache::remember('regions', 300 * 60, function () {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . config('api.redberry'),
             ])->get('https://api.real-estate-manager.redberryinternship.ge/api/regions');
@@ -113,7 +113,7 @@ class RealEstatesController extends Controller
 
 
 
-        $cities = Cache::remember('cities', 30 * 60, function () {
+        $cities = Cache::remember('cities', 300 * 60, function () {
             $response2 = Http::withHeaders([
                 'Authorization' => 'Bearer '.config('api.redberry'),
             ])->get('https://api.real-estate-manager.redberryinternship.ge/api/cities');
@@ -128,7 +128,7 @@ class RealEstatesController extends Controller
 
 
 
-        $agents = Cache::remember('agents', 30 * 60, function () {
+        $agents = Cache::remember('agents', 300 * 60, function () {
             $response3 = Http::withHeaders([
                 'Authorization' => 'Bearer '.config('api.redberry'),
             ])->get('https://api.real-estate-manager.redberryinternship.ge/api/agents');
@@ -177,11 +177,8 @@ class RealEstatesController extends Controller
 
 
         if (!$response->successful()) {
-            return back()->with('alert_error', 'რაღაც შეცდომა');
+            return redirect()->route('real-estates.index')->with('alert_error', 'რაღაც შეცდომა');
         }
-
-
-
 
 
 

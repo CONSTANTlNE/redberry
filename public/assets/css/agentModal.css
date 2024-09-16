@@ -168,10 +168,10 @@
 }
 
 
-#imagePreview{
+#imagePreview , #imagePreviewListing{
     position:relative;
 }
-#agent-avatar-delete-icon{
+#agent-avatar-delete-icon , #agent-avatar-delete-icon-listing{
     position: absolute;
     bottom:-5px;
     right: -10px;
@@ -179,7 +179,9 @@
 
 }
 
-#agent-avatar-upload-icon{
+
+
+#agent-avatar-upload-icon , #agent-avatar-delete-icon-listing , #agent-avatar-upload-icon-listing{
     cursor: pointer;
 }
 
@@ -192,7 +194,7 @@
 }
 
 
-#uploadedImage{
+#uploadedImage, #uploadedAgentImage {
     width: 92px;
     height: 82px;
     flex-shrink: 0;

@@ -102,3 +102,60 @@
     border-radius: 6px;
     border: 1px solid #808A93;
 }
+
+
+/*==============Add Agent Css in create listing page=====*/
+
+.agent-listing-btn{
+    display: flex;
+    justify-content: space-between;
+
+    height: 42px;
+    padding: 10px;
+    max-width: 384px;;
+    text-align: start;
+    border-radius: 6px;
+    border: 1px solid #808A93;
+    background: #FFFFFF;
+
+
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+
+}
+
+.custom-option, .add-agent-option{
+    display: flex;
+    width: 100%;
+    height: 42px;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+
+    border-bottom: 1px solid #808A93;
+cursor: pointer;
+
+}
+
+.options-dropdown {
+    position: absolute;
+    left: 0px;
+    top: 100%;
+
+    width: 384px;
+    padding:0;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #808A93;
+    background: #FFF;
+    box-shadow: 5px 5px 12px 0 rgba(2, 21, 38, 0.08);
+    z-index: 5000;
+    border-bottom-right-radius: 6px;;
+    border-bottom-left-radius: 6px;;
+
+}

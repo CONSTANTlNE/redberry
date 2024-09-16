@@ -26,15 +26,24 @@
             integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
-    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+    <style>
+
+
+
+    </style>
+
 
 </head>
 <div id="htmxerrors"></div>
@@ -88,22 +97,20 @@
 
 
 @if(request()->routeIs('real-estates.index'))
-    <script>
-        const allRegions= {!! json_encode($regions) !!};
-        const allistings= {!! json_encode($listings) !!};
-    </script>
-
 
     <script src="{{asset('assets/js/dropdown.js')}}"></script>
     <script src="{{asset('assets/js/searchSelection.js')}}"></script>
-    <script src="{{asset('assets/js/agentModal.js')}}"></script>
+
     {{--    <script src="{{asset('assets/js/filter.js')}}"></script>--}}
     <script src="{{asset('assets/js/filterbyparams.js')}}"></script>
 
 @endif
-<script src="{{asset('assets/js/imageUpload.js')}}"></script>
+
+
+
 @if(request()->routeIs('real-estates.create'))
     <script src="{{asset('assets/js/listingValidation.js')}}"></script>
+    <script src="{{asset('assets/js/agentdropdow.js')}}"></script>
 @endif
 <script src="{{asset('assets/js/custom-htmx.js')}}"></script>
 
@@ -111,7 +118,10 @@
 <script src="{{asset('assets/js/slider.js')}}"></script>
 @endif
 
-
+@if(!request()->routeIs('real-estates.show'))
+<script src="{{asset('assets/js/imageUpload.js')}}"></script>
+<script src="{{asset('assets/js/agentModal.js')}}"></script>
+@endif
 
 
 </body>

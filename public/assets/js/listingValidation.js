@@ -8,7 +8,7 @@ const priceInput=document.getElementById('price');
 const areaInput=document.getElementById('area');
 const bedroomsInput=document.getElementById('bedrooms');
 const descriptionInput=document.getElementById('description');
-const agentSelect=document.getElementById('agent_id');
+const agentSelect=document.getElementById('agentinput');
 
 
 

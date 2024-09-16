@@ -8,6 +8,8 @@
 }
 .single-top-wrapper img{
     width: 770px;
+    max-height: 630px;
+    object-fit: cover;
 }
 
 .listing-data-wrapper-single {

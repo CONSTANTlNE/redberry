@@ -298,10 +298,10 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
 
 
 
-// ================ DateRange VALIDATION ========================
+// ================ AREA Range VALIDATION ========================
 
 
-// Date Range Validation on INPUT
+// AREA Range Validation on INPUT
 
 const minareas=document.querySelectorAll('[data-min-area]')
 const maxareas=document.querySelectorAll('[data-max-area]')

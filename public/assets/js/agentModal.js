@@ -1,7 +1,4 @@
 
-
-
-
 // Modal Functionality
 const openAgentModal = document.getElementById('agent-open-modal');
 const agentModal = document.getElementById('agent-modal');
@@ -10,9 +7,12 @@ const closeAgentModal = document.getElementById('close-agent-modal');
 
 openAgentModal.addEventListener('click', () => {
     agentModal.showModal();
+
+
 })
 
 closeAgentModal.addEventListener('click', () => {
+
     agentModal.close();
 })
 
@@ -78,6 +78,33 @@ function validateAvatar(avatar) {
     return true;
 }
 
+function validateAvatar2(avatar2) {
+    console.log('fired')
+    if(imageUpload2.files.length > 0){
+
+        return true
+    }
+
+    if (!avatar2) {
+        return false
+    }
+
+    // Validate type
+    const validImageTypes2 = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validImageTypes2.includes(avatar2.type)) {
+        return false
+    }
+
+    // Validate Size
+    const fileSize2 = avatar2.size / 1024 / 1024; // in MB
+    if (fileSize2 > 1) {
+        return false
+    }
+
+    return true;
+}
+
+
 
 agentForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -104,7 +131,7 @@ agentForm.addEventListener('submit', (event) => {
                   stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
 
-        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+        <span class="agent-validation-info">მხოლოდ რიცხვები,ფორმატი 5XXXXXXXX</span>
     `;
 
         agent_phone_input.style.borderColor = 'red';
@@ -119,7 +146,7 @@ agentForm.addEventListener('submit', (event) => {
                           stroke-linejoin="round"/>
                 </svg>
 
-                <span class="agent-validation-info">მხოლოდ რიცხვები</span>
+                <span class="agent-validation-info">მხოლოდ რიცხვები,ფორმატი 5XXXXXXXX</span>
             
             `
 
@@ -137,7 +164,7 @@ agentForm.addEventListener('submit', (event) => {
                   stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
 
-        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+        <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
     `;
 
         agent_surname_input.style.borderColor = 'red';
@@ -209,7 +236,7 @@ agentForm.addEventListener('submit', (event) => {
                   stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
 
-        <span class="agent-validation-info">ჩაწერეთ ვალიდური მონაცემები</span>
+        <span class="agent-validation-info">მინიმუმ ორი სიმბოლო</span>
     `;
 
         agent_firstname_input.style.borderColor = 'red';
@@ -237,21 +264,48 @@ agentForm.addEventListener('submit', (event) => {
 
     }
 
-    if (!validateAvatar(avatar)) {
 
-        agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
-        agent_avatar_validation.style.color = 'red';
 
-        isValid = false;
-    }
-    else {
 
-        agent_avatar_validation.innerHTML =
-            ` ატვირთეთ ფოტო <sup>*</sup>
+    if(imageUpload2){
+        avatar2 = imageUpload2.files[0];
+
+        if (!validateAvatar2(avatar2)) {
+            console.log('false?')
+            agent_avatar_validation2.innerHTML = 'ავატარი სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
+            agent_avatar_validation2.style.color = 'red';
+
+            isValid = false;
+        }
+
+        else {
+            console.log('true?')
+            agent_avatar_validation2.innerHTML =
+                ` ატვირთეთ ფოტო <sup>*</sup>
             `
-        agent_avatar_validation.style.color = 'green';
+            agent_avatar_validation2.style.color = 'green';
 
+        }
+    } else {
+        if (!validateAvatar(avatar)) {
+
+            agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
+            agent_avatar_validation.style.color = 'red';
+
+            isValid = false;
+        }
+        else {
+
+            agent_avatar_validation.innerHTML =
+                ` ატვირთეთ ფოტო <sup>*</sup>
+            `
+            agent_avatar_validation.style.color = 'green';
+
+        }
     }
+
+
+
 
     if (isValid) {
         agentForm.submit();
