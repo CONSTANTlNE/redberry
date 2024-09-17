@@ -177,6 +177,10 @@ regioncheckboxes.forEach((checkbox, index) => {
 const minprices=document.querySelectorAll('[data-min-price]')
 const maxprices=document.querySelectorAll('[data-max-price]')
 const rangebtn=document.getElementById('pricerangesubmit')
+let validprice=true
+let validarea=true
+let validroom=true
+
 
 
 
@@ -191,14 +195,21 @@ minprices.forEach((ggg, index) => {
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
+            validprice=false
+            document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
+            validprice=true
+            document.getElementById('pricerangediv').style.border = "none";
+
         }
     })
 })
+
+
 
 maxprices.forEach((bbb, index) => {
     bbb.addEventListener('click', () => {
@@ -209,14 +220,22 @@ maxprices.forEach((bbb, index) => {
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
+            validprice=false
+            document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
+            validprice=true
+            document.getElementById('pricerangediv').style.border = "none";
+
+
         }
     })
 })
+
+
 
 // Price Range Validation on INPUT
 
@@ -224,12 +243,12 @@ document.querySelector('input[name="minprice"]').addEventListener('input', (even
     const mininput = event.target.value;
     const numericValue = parseInt(mininput);
     if (isNaN(numericValue)) {
-        console.log(isNaN(numericValue))
 
-         console.log(  document.querySelector('.minrpricerange')
-         )
         document.querySelector('.minrpricerange').style.border='2px solid red'
         rangebtn.setAttribute('type', 'button')
+        validprice=false
+
+
 
 
     } else {
@@ -240,12 +259,20 @@ document.querySelector('input[name="minprice"]').addEventListener('input', (even
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
+            document.getElementById('pricerangediv').style.border = "1px solid red";
+            validprice=false
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
+            document.getElementById('pricerangediv').style.border = "none";
+            validprice=true
+
         }
+
+
+
     }
 
 
@@ -267,6 +294,8 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
         console.log('its nan')
         document.querySelector('.maxpricerange').style.border='2px solid red'
         rangebtn.setAttribute('type', 'button')
+        validprice=false
+        document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
     } else {
@@ -277,12 +306,17 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
+            document.getElementById('pricerangediv').style.border = "1px solid red";
+            validprice=false
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
+            validprice=true
+            document.getElementById('pricerangediv').style.border = "none";
         }
+
 
     }
 
@@ -310,6 +344,8 @@ const areabtn=document.querySelector('.pricerangesubmit')
 
 //  AREA Range Validation on Predefined prices click
 
+
+
 minareas.forEach((ggg, index) => {
 
     ggg.addEventListener('click', () => {
@@ -319,11 +355,17 @@ minareas.forEach((ggg, index) => {
 
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
+            validarea=false
+            document.getElementById('arearangediv').style.border = "1px solid red";
+
 
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
+            validarea=true
+            document.getElementById('arearangediv').style.border = "none";
+
         }
     })
 })
@@ -337,11 +379,16 @@ maxareas.forEach((bbb, index) => {
 
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
+            validarea=false
+            document.getElementById('arearangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
+            validarea=true
+            document.getElementById('arearangediv').style.border = "none";
+
         }
     })
 })
@@ -360,6 +407,8 @@ document.querySelector('input[name="minarea"]').addEventListener('input', (event
 
         document.querySelector('.minarearange').style.border='2px solid red'
         areabtn.setAttribute('type', 'button')
+        validarea=false
+        document.getElementById('arearangediv').style.border = "1px solid red";
 
 
     } else {
@@ -370,12 +419,19 @@ document.querySelector('input[name="minarea"]').addEventListener('input', (event
 
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
-
+            document.getElementById('arearangediv').style.border = "1px solid red";
+            validarea=false
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
+            document.getElementById('arearangediv').style.border = "none";
+
+            validarea=true
         }
+
+
+
     }
 
 
@@ -397,6 +453,8 @@ document.querySelector('input[name="maxarea"]').addEventListener('input', (event
 
         document.querySelector('.maxarearange').style.border='2px solid red'
         areabtn.setAttribute('type', 'button')
+        validarea=false
+
 
 
     } else {
@@ -407,12 +465,19 @@ document.querySelector('input[name="maxarea"]').addEventListener('input', (event
 
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
+            validarea=false
+            document.getElementById('arearangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
+            document.getElementById('arearangediv').style.border = "none";
+
+            validarea=true
         }
+
+
 
     }
 
@@ -436,18 +501,46 @@ const roomsbtn=document.querySelector('.roomsbtn')
 document.querySelector('input[name="bedrooms"]').addEventListener('input', (event) => {
     const rooms = event.target.value;
     const numericValue2 = parseInt(rooms);
-    if (isNaN(numericValue2)) {
+    if (isNaN(numericValue2) && rooms !== '') {
 
 
         document.querySelector('.roomsbox').style.border='2px solid red'
         roomsbtn.setAttribute('type', 'button')
+        validroom=false
+        // document.getElementById('roomsdiv').style.borderRadius = "10px";
+
+        document.getElementById('roomsdiv').style.border = "1px solid red";
 
 
     } else {
         document.querySelector('.roomsbox').style.border="1px solid #808A93"
         roomsbtn.setAttribute('type', 'submit')
+        validroom=true
+        document.getElementById('roomsdiv').style.border = "none";
 
 
     }
 
 });
+
+
+
+// ====  whole form validation ====
+
+
+const select_form=document.querySelector('.select-wrapper')
+
+
+select_form.addEventListener('submit', (event) => {
+
+    if(validroom===false || validarea===false || validprice===false){
+
+        event.preventDefault();
+    } else {
+
+        select_form.submit();
+    }
+
+
+
+})

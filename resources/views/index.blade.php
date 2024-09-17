@@ -10,10 +10,6 @@
             <div class="top-wrapper">
 
                 <form
-{{--                        hx-get="{{route('real-estates.index')}}"--}}
-{{--                        hx-target="#index"--}}
-{{--                        hx-push-url="true"--}}
-{{--                        hx-target="#index"--}}
                         class="select-wrapper">
                     {{--Regions--}}
                     <div style="display: flex;flex-direction: column">
@@ -62,7 +58,7 @@
                     </div>
 
                     {{--Price Range--}}
-                    <div style="display: flex;flex-direction: column">
+                    <div id="pricerangediv" style="display: flex;flex-direction: column">
                         <button type="button" class="select-btn select-btn-color inline-btn">
                             <span>საფასო კატეგორია</span>
                             <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
@@ -117,7 +113,7 @@
                     </div>
 
                     {{--area Range--}}
-                    <div style="display: flex;flex-direction: column">
+                    <div id="arearangediv" style="display: flex;flex-direction: column">
                         <button type="button" class="select-btn select-btn-color inline-btn">
                             <span>ფართობი</span>
                             <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
@@ -175,7 +171,7 @@
                     </div>
 
                     {{--Rooms--}}
-                    <div style="display: flex;flex-direction: column">
+                    <div id="roomsdiv" style="display: flex;flex-direction: column">
                         <button type="button" class="select-btn select-btn-color inline-btn">
                             <span>საძინებლების რაოდენობა</span>
                             <svg class="arrow-svg arrow-toggle inline-svg" xmlns="http://www.w3.org/2000/svg" width="14"
@@ -370,16 +366,16 @@
                             </div>
                         </a>
                     </div>
-
                 @endforeach
-
             </section>
-
-
         @endif
 
 
 
     </main>
+
+    <script>
+
+    </script>
 @endsection
 

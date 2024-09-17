@@ -256,3 +256,12 @@ dialog::backdrop{
     font-weight: 400;
     line-height: normal;
 }
+
+.slider-heading{
+    color: #021526;
+    font-family: FiraGO;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
