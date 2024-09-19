@@ -83,7 +83,7 @@
                 </div>
                 <div class="modal-input-wrapper">
                     <div class="modal-input">
-                        <label class="label" for="region_id">რეგიონი</label>
+                        <label class="label" for="region_id">რეგიონი <sup>*</sup></label>
                         <select
                                 hx-get="{{route('htmx.cities')}}"
                                 hx-trigger="change"
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="modal-input">
-                        <label class="label" for="city_id">ქალაქი</label>
+                        <label class="label" for="city_id">ქალაქი <sup>*</sup></label>
                         <select name="city_id" class="agent-input" id="city_id">
                             <option value="">აირჩიეთ ქალაქი</option>
                             @foreach($cities as $city)
@@ -118,7 +118,7 @@
                 <h3 class="helvetica-heading">ბინის დეტალები</h3>
                 <div class="modal-input-wrapper">
                     <div class="modal-input">
-                        <label class="label" for="price">ფასი</label>
+                        <label class="label" for="price">ფასი <sup>*</sup></label>
                         <input name="price" class="agent-input" id="price" type="text">
                         <div id="price-validation" class="agent-validation-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11"
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="modal-input">
-                        <label class="label" for="area">ფართობი</label>
+                        <label class="label" for="area">ფართობი <sup>*</sup></label>
                         <input name="area" class="agent-input" id="area" type="text">
                         <div id="area-validation" class="agent-validation-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11"
@@ -284,6 +284,7 @@
 
 
     <script>
+
         // Custom Radio
         const sale_checked = document.querySelector('.sale_checked');
         const sale_unchecked = document.querySelector('.sale_unchecked');

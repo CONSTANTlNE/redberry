@@ -102,6 +102,7 @@
 @if(request()->routeIs('real-estates.create'))
     <script src="{{asset('assets/js/listingValidation.js')}}"></script>
     <script src="{{asset('assets/js/agentdropdow.js')}}"></script>
+    <script src="{{asset('assets/js/listingSaveOnRefresh.js')}}"></script>
 @endif
 <script src="{{asset('assets/js/custom-htmx.js')}}"></script>
 

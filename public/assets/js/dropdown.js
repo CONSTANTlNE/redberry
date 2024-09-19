@@ -196,7 +196,7 @@ minprices.forEach((ggg, index) => {
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
             validprice=false
-            document.getElementById('pricerangediv').style.border = "1px solid red";
+            // document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
         } else {
@@ -221,14 +221,14 @@ maxprices.forEach((bbb, index) => {
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
             validprice=false
-            document.getElementById('pricerangediv').style.border = "1px solid red";
+            // document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
-            validprice=true
-            document.getElementById('pricerangediv').style.border = "none";
+            // validprice=true
+            // document.getElementById('pricerangediv').style.border = "none";
 
 
         }
@@ -259,14 +259,14 @@ document.querySelector('input[name="minprice"]').addEventListener('input', (even
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
-            document.getElementById('pricerangediv').style.border = "1px solid red";
+            // document.getElementById('pricerangediv').style.border = "1px solid red";
             validprice=false
 
 
         } else {
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
-            document.getElementById('pricerangediv').style.border = "none";
+            // document.getElementById('pricerangediv').style.border = "none";
             validprice=true
 
         }
@@ -295,7 +295,7 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
         document.querySelector('.maxpricerange').style.border='2px solid red'
         rangebtn.setAttribute('type', 'button')
         validprice=false
-        document.getElementById('pricerangediv').style.border = "1px solid red";
+        // document.getElementById('pricerangediv').style.border = "1px solid red";
 
 
     } else {
@@ -306,7 +306,7 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
 
             document.querySelector('.maxpricerange').style.border='2px solid red'
             rangebtn.setAttribute('type', 'button')
-            document.getElementById('pricerangediv').style.border = "1px solid red";
+            // document.getElementById('pricerangediv').style.border = "1px solid red";
             validprice=false
 
 
@@ -314,7 +314,7 @@ document.querySelector('input[name="maxprice"]').addEventListener('input', (even
             document.querySelector('.maxpricerange').style.border="1px solid #808A93"
             rangebtn.setAttribute('type', 'submit')
             validprice=true
-            document.getElementById('pricerangediv').style.border = "none";
+            // document.getElementById('pricerangediv').style.border = "none";
         }
 
 
@@ -356,7 +356,7 @@ minareas.forEach((ggg, index) => {
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
             validarea=false
-            document.getElementById('arearangediv').style.border = "1px solid red";
+            // document.getElementById('arearangediv').style.border = "1px solid red";
 
 
 
@@ -364,7 +364,7 @@ minareas.forEach((ggg, index) => {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
             validarea=true
-            document.getElementById('arearangediv').style.border = "none";
+            // document.getElementById('arearangediv').style.border = "none";
 
         }
     })
@@ -380,14 +380,14 @@ maxareas.forEach((bbb, index) => {
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
             validarea=false
-            document.getElementById('arearangediv').style.border = "1px solid red";
+            // document.getElementById('arearangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
             validarea=true
-            document.getElementById('arearangediv').style.border = "none";
+            // document.getElementById('arearangediv').style.border = "none";
 
         }
     })
@@ -402,13 +402,13 @@ maxareas.forEach((bbb, index) => {
 document.querySelector('input[name="minarea"]').addEventListener('input', (event) => {
     const mininput2 = event.target.value;
     const numericValue2 = parseInt(mininput2);
-    if (isNaN(numericValue2)) {
+    if (isNaN(numericValue2) && mininput2 !== '') {
 
 
         document.querySelector('.minarearange').style.border='2px solid red'
         areabtn.setAttribute('type', 'button')
         validarea=false
-        document.getElementById('arearangediv').style.border = "1px solid red";
+        // document.getElementById('arearangediv').style.border = "1px solid red";
 
 
     } else {
@@ -419,13 +419,13 @@ document.querySelector('input[name="minarea"]').addEventListener('input', (event
 
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
-            document.getElementById('arearangediv').style.border = "1px solid red";
+            // document.getElementById('arearangediv').style.border = "1px solid red";
             validarea=false
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
-            document.getElementById('arearangediv').style.border = "none";
+            // document.getElementById('arearangediv').style.border = "none";
 
             validarea=true
         }
@@ -449,15 +449,16 @@ document.querySelector('input[name="maxarea"]').addEventListener('input', (event
     const numericValue = parseFloat(maxinput2);
 
     // Check if the value is not a valid integer
-    if (isNaN(numericValue)) {
+    if (isNaN(numericValue) && maxinput2 !== '') {
 
         document.querySelector('.maxarearange').style.border='2px solid red'
         areabtn.setAttribute('type', 'button')
         validarea=false
-
+        // document.getElementById('arearangediv').style.border = "1px solid red";
 
 
     } else {
+
         document.querySelector('.maxarearange').style.border="1px solid #808A93"
         areabtn.setAttribute('type', 'submit')
 
@@ -466,13 +467,13 @@ document.querySelector('input[name="maxarea"]').addEventListener('input', (event
             document.querySelector('.maxarearange').style.border='2px solid red'
             areabtn.setAttribute('type', 'button')
             validarea=false
-            document.getElementById('arearangediv').style.border = "1px solid red";
+            // document.getElementById('arearangediv').style.border = "1px solid red";
 
 
         } else {
             document.querySelector('.maxarearange').style.border="1px solid #808A93"
             areabtn.setAttribute('type', 'submit')
-            document.getElementById('arearangediv').style.border = "none";
+            // document.getElementById('arearangediv').style.border = "none";
 
             validarea=true
         }
@@ -509,14 +510,14 @@ document.querySelector('input[name="bedrooms"]').addEventListener('input', (even
         validroom=false
         // document.getElementById('roomsdiv').style.borderRadius = "10px";
 
-        document.getElementById('roomsdiv').style.border = "1px solid red";
+        // document.getElementById('roomsdiv').style.border = "1px solid red";
 
 
     } else {
         document.querySelector('.roomsbox').style.border="1px solid #808A93"
         roomsbtn.setAttribute('type', 'submit')
         validroom=true
-        document.getElementById('roomsdiv').style.border = "none";
+        // document.getElementById('roomsdiv').style.border = "none";
 
 
     }

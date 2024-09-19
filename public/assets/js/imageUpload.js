@@ -2,6 +2,7 @@
 // Upload and display image
 
 const imageUpload = document.getElementById('imageUpload');
+const currentUrl = window.location.href;
 
 const uploadedImage = document.getElementById('uploadedImage');
 const upload_icon = document.getElementById('agent-avatar-upload-icon')
@@ -18,43 +19,58 @@ upload_icon.addEventListener('click', () => {
 
 
 imageUpload.addEventListener('change', function (event) {
-    const file = event.target.files[0]; // Get the selected file
-    upload_icon.style.display = 'none'
+    const file = event.target.files[0];
+    upload_icon.style.display = 'none';
+
     if (file) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
             uploadedImage.src = e.target.result;
             uploadedImage.style.display = 'block';
+
+            // save in localstorage to display later on refresh
+            if (currentUrl.includes('create/real-estates')){
+                localStorage.setItem('uploadedImage', e.target.result);
+            }
+
         };
+
         reader.readAsDataURL(file);
     }
-
 
     const avatar = imageUpload.files[0];
 
     if (!validateAvatar(avatar)) {
-
-        agent_avatar_validation.innerHTML = 'ავატარი სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
+        agent_avatar_validation.innerHTML = 'ავატარი სავალდებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp';
         agent_avatar_validation.style.color = 'red';
-
         isValid = false;
-    }
-    else {
-
-        agent_avatar_validation.innerHTML =
-            ` ატვირთეთ ფოტო <sup>*</sup>
-            `
+    } else {
+        agent_avatar_validation.innerHTML = ' ატვირთეთ ფოტო <sup>*</sup>';
         agent_avatar_validation.style.color = 'green';
-
+        isValid = true;
     }
-
 
     setTimeout(function () {
         delete_icon.style.display = 'flex';
     }, 100);
 });
 
+// Load image from localstorage
+if (currentUrl.includes('create/real-estates')) {
+    window.addEventListener('load', function () {
+        const savedImage = localStorage.getItem('uploadedImage');
+
+        if (savedImage) {
+
+            uploadedImage.src = savedImage;
+            uploadedImage.style.display = 'block';
+
+            upload_icon.style.display = 'none';
+            delete_icon.style.display = 'flex';
+        }
+    });
+}
 
 // listen for delete icon
 delete_icon.addEventListener('click', (e) => {
@@ -64,6 +80,11 @@ delete_icon.addEventListener('click', (e) => {
     imageUpload.value = '';
     agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
     agent_avatar_validation.style.color = 'red';
+
+    if(localStorage.getItem('uploadedImage') !== null){
+        localStorage.removeItem('uploadedImage')
+    }
+
 })
 
 

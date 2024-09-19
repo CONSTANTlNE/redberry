@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="modal-input">
-                    <label class="label" for="agent-surname">გვარი</label>
+                    <label class="label" for="agent-surname">გვარი <sup>*</sup></label>
                     <input name="surname" class="agent-input" id="agent-surname" type="text">
                     <div id="agent-surname-validation"  class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="modal-input">
-                    <label class="label" for="agent-phone">ტელეფონის ნომერი</label>
+                    <label class="label" for="agent-phone">ტელეფონის ნომერი <sup>*</sup></label>
                     <input name="phone" class="agent-input" id="agent-phone" type="text">
                     <div id="agent-phone-validation" class="agent-validation-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">

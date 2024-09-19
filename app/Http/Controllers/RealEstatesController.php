@@ -38,13 +38,72 @@ class RealEstatesController extends Controller
         });
 
         // START FILTERING
-        $filteredregions  = [];
-        $filteredlistings = $listings; // Start with all listings
 
-        // Filter by region if provided
-        if ($request->has('region')) {
-            $requestregions   = $request->region;
-            $filteredlistings = [];
+
+//        filter when all criterias must be met (changed because of docs)
+
+//
+//        $filteredlistings = $listings;
+//
+//        // filter regions
+//        if ($request->has('region')) {
+//            $requestregions   = $request->region;
+//            $filteredlistings = [];
+//
+//            foreach ($listings as $listing) {
+//                if (in_array($listing['city']['region_id'], $requestregions)) {
+//                    $filteredlistings[] = $listing;
+//                }
+//            }
+//
+//            foreach ($regions as $item) {
+//                if (in_array($item['id'], $requestregions)) {
+//                    $filteredregions[] = $item;
+//                }
+//            }
+//        }
+//
+//        // filter price
+//        if ($request->has('minprice') && $request->minprice != null && $request->has('maxprice') && $request->maxprice != null) {
+//            $minPrice = $request->minprice;
+//            $maxPrice = $request->maxprice;
+//
+//            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minPrice, $maxPrice) {
+//                return $listing['price'] >= $minPrice && $listing['price'] <= $maxPrice;
+//            });
+//        }
+//
+//        // filter area
+//        if ($request->has('minarea') && $request->minarea != null && $request->has('maxarea') && $request->maxarea != null) {
+//            $minArea = (float) $request->minarea;
+//            $maxArea = (float) $request->maxarea;
+//
+//            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minArea, $maxArea) {
+//                return $listing['area'] >= $minArea && $listing['area'] <= $maxArea;
+//            });
+//        }
+//
+//        // filter rooms
+//        if ($request->has('bedrooms') && $request->bedrooms != null) {
+//            $rooms = $request->bedrooms;
+//
+//            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($rooms) {
+//                return $listing['bedrooms'] == $rooms;
+//            });
+//        }
+//
+//  if no filter return all
+//        if (!$request->has('region') && !$request->has('minprice') && !$request->has('maxprice') && !$request->has('minarea') && !$request->has('maxarea') && !$request->has('rooms')) {
+//            $filteredlistings = $listings;
+//        }
+
+
+
+        $filteredlistings = [];
+
+// filter by region
+        if ($request->has('region') && $request->region != null) {
+            $requestregions = $request->region;
 
             foreach ($listings as $listing) {
                 if (in_array($listing['city']['region_id'], $requestregions)) {
@@ -52,48 +111,89 @@ class RealEstatesController extends Controller
                 }
             }
 
-            foreach ($regions as $item) {
-                if (in_array($item['id'], $requestregions)) {
-                    $filteredregions[] = $item;
-                }
-            }
         }
 
-        // Filter by price range if provided
+// filter price
         if ($request->has('minprice') && $request->minprice != null && $request->has('maxprice') && $request->maxprice != null) {
             $minPrice = $request->minprice;
             $maxPrice = $request->maxprice;
 
-            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minPrice, $maxPrice) {
-                return $listing['price'] >= $minPrice && $listing['price'] <= $maxPrice;
-            });
+            foreach ($listings as $listing) {
+                if ($listing['price'] >= $minPrice && $listing['price'] <= $maxPrice) {
+                    $filteredlistings[] = $listing;
+                }
+            }
+        } elseif ($request->has('minprice') && $request->minprice != null) {
+            $minPrice = $request->minprice;
+            $maxPrice = PHP_INT_MAX;
+            foreach ($listings as $listing) {
+                if ($listing['price'] >= $minPrice && $listing['price'] <= $maxPrice) {
+                    $filteredlistings[] = $listing;
+                }
+            }
+        } elseif ($request->has('maxprice') && $request->maxprice != null) {
+            $maxPrice = $request->maxprice;
+            $minPrice=0;
+
+            foreach ($listings as $listing) {
+                if ($listing['price'] >= $minPrice && $listing['price'] <= $maxPrice) {
+                    $filteredlistings[] = $listing;
+                }
+            }
         }
 
-        // Filter by area if provided
+// filter  area
         if ($request->has('minarea') && $request->minarea != null && $request->has('maxarea') && $request->maxarea != null) {
             $minArea = (float) $request->minarea;
             $maxArea = (float) $request->maxarea;
 
-            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($minArea, $maxArea) {
-                return $listing['area'] >= $minArea && $listing['area'] <= $maxArea;
-            });
+            foreach ($listings as $listing) {
+                if ($listing['area'] >= $minArea && $listing['area'] <= $maxArea) {
+                    $filteredlistings[] = $listing;
+                }
+            }
+        } elseif ($request->has('minarea') && $request->minarea != null) {
+            $minArea = (float) $request->minarea;
+            $maxArea = PHP_INT_MAX;
+
+            foreach ($listings as $listing) {
+                if ($listing['area'] >= $minArea && $listing['area'] <= $maxArea) {
+                    $filteredlistings[] = $listing;
+                }
+            }
+
+        } elseif ($request->has('maxarea') && $request->maxarea != null) {
+            $maxArea = (float) $request->maxarea;
+            $minArea=0;
+            foreach ($listings as $listing) {
+                if ($listing['area'] >= $minArea && $listing['area'] <= $maxArea) {
+                    $filteredlistings[] = $listing;
+                }
+            }
         }
 
-        // Filter by rooms if provided
+// Filter rooms
         if ($request->has('bedrooms') && $request->bedrooms != null) {
             $rooms = $request->bedrooms;
 
-            $filteredlistings = array_filter($filteredlistings, function ($listing) use ($rooms) {
-                return $listing['bedrooms'] == $rooms;
-            });
+            foreach ($listings as $listing) {
+                if ($listing['bedrooms'] == $rooms) {
+                    $filteredlistings[] = $listing;
+                }
+            }
         }
 
-        // If no filters are applied, return all listings
-        if (!$request->has('region') && !$request->has('minprice') && !$request->has('maxprice') && !$request->has('minarea') && !$request->has('maxarea') && !$request->has('rooms')) {
+//  if no filter return all
+        if ($request->region==null && $request->minprice==null && $request->maxprice==null && $request->minarea==null && $request->maxarea==null && $request->bedrooms==null ) {
             $filteredlistings = $listings;
         }
 
-        return view('index', compact('regions', 'listings', 'filteredregions', 'filteredlistings'));
+// Remove duplicates
+        $filteredlistings = array_unique($filteredlistings, SORT_REGULAR);
+
+
+
+        return view('index', compact('regions', 'listings', 'filteredlistings'));
     }
 
     public function create()

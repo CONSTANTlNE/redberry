@@ -1,9 +1,6 @@
 @extends('layout')
 
 
-{{--@dd(request()->maxprice)--}}
-
-{{--@dd($filteredlistings)--}}
 @section('index')
     <main style="width: 80%;" id="index">
         <div>
@@ -31,14 +28,19 @@
                                 <div class="region-items">
                                     @foreach($regions as $index => $region)
                                         <div class="region">
-                                            <svg class="uncheckedsvg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <svg class="uncheckedsvg" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                 height="20" viewBox="0 0 20 20" fill="none">
                                                 <rect x="0.5" y="0.5" width="19" height="19" rx="1.5" stroke="#DBDBDB"/>
                                             </svg>
-                                            <svg style="display: none" class="chekedsvg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <svg style="display: none" class="chekedsvg"
+                                                 xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 viewBox="0 0 20 20" fill="none">
                                                 <rect width="20" height="20" rx="2" fill="#45A849"/>
-                                                <path d="M15.4546 5.4541L8.57959 13.6359L5.45459 9.91691" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15.4546 5.4541L8.57959 13.6359L5.45459 9.91691" stroke="white"
+                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
-                                            <input style="display: none" {{request()->region!=null && in_array($region['id'], request()->region) ? 'checked' : ''}} name="region[]"
+                                            <input style="display: none"
+                                                   {{request()->region!=null && in_array($region['id'], request()->region) ? 'checked' : ''}} name="region[]"
                                                    id="region{{$index}}" data-name="{{$region['name']}}"
                                                    class="dropdown-checkbox regions-checkbox" value="{{$region['id']}}"
                                                    type="checkbox">
@@ -74,12 +76,14 @@
                                     <p class="dropdown-name">ფასის მიხედვით</p>
                                     <div class="range">
                                         <div class="range-box minrpricerange">
-                                            <input style="border:none;outline: none;" type="text" name="minprice" class="range-input"
+                                            <input style="border:none;outline: none;" type="text" name="minprice"
+                                                   class="range-input"
                                                    placeholder="დან" {{request()->has('minprice') ? 'value='.request()->minprice : ''}} >
                                             <span>₾</span>
                                         </div>
                                         <div class="range-box maxpricerange">
-                                            <input style="border:none;outline: none;" type="text" name="maxprice" class="range-input"
+                                            <input style="border:none;outline: none;" type="text" name="maxprice"
+                                                   class="range-input"
                                                    placeholder="მდე" {{request()->has('maxprice') ? 'value='.request()->maxprice : ''}}>
                                             <span>₾</span>
                                         </div>
@@ -88,14 +92,14 @@
                                     <div class="prices">
                                         <div class="price-list">
                                             <p class="rangecss" style="margin-bottom: 16px">მინ. ფასი</p>
-                                            <p  data-min-price="500" class="min-price">500 ₾</p>
+                                            <p data-min-price="500" class="min-price">500 ₾</p>
                                             <p data-min-price="20000" class="min-price">20,000 ₾</p>
                                             <p data-min-price="30000" class="min-price">30,000 ₾</p>
                                             <p data-min-price="60000" class="min-price">60,000 ₾</p>
                                             <p data-min-price="100000" class="min-price">100,000 ₾</p>
                                         </div>
                                         <div class="price-list">
-                                            <p  class="rangecss" style="margin-bottom: 16px">მაქს. ფასი</p>
+                                            <p class="rangecss" style="margin-bottom: 16px">მაქს. ფასი</p>
                                             <p data-max-price="2000" class="min-price">2 000 ₾</p>
                                             <p data-max-price="40000" class="min-price">40,000 ₾</p>
                                             <p data-max-price="60000" class="min-price">60,000 ₾</p>
@@ -143,16 +147,16 @@
                                     </div>
 
                                     <div class="prices">
-                                        <div   class="price-list">
+                                        <div class="price-list">
                                             <p class="rangecss" style="margin-bottom: 16px">მინ. მ<sup>2</sup></p>
-                                            <p  data-min-area="20" class="min-price">20 მ<sup>2</sup></p>
+                                            <p data-min-area="20" class="min-price">20 მ<sup>2</sup></p>
                                             <p data-min-area="50" class="min-price">50 მ<sup>2</sup></p>
                                             <p data-min-area="70" class="min-price">70 მ<sup>2</sup></p>
                                             <p data-min-area="80" class="min-price">80 მ<sup>2</sup></p>
                                             <p data-min-area="100" class="min-price">100 მ<sup>2</sup></p>
                                         </div>
-                                        <div  class="price-list">
-                                            <p class="rangecss"  style="margin-bottom: 16px">მაქს. მ<sup>2</sup></p>
+                                        <div class="price-list">
+                                            <p class="rangecss" style="margin-bottom: 16px">მაქს. მ<sup>2</sup></p>
                                             <p data-max-area="50" class="min-price">50 მ<sup>2</sup></p>
                                             <p data-max-area="70" class="min-price">70 მ<sup>2</sup></p>
                                             <p data-max-area="80" class="min-price">80 მ<sup>2</sup></p>
@@ -189,7 +193,7 @@
                                     <p class="dropdown-name">საძინებლების რაოდენობა</p>
                                     <div style="width: 50px!important;" class="range">
                                         <div style="width: 50px!important;" class="range-box roomsbox">
-                                            <input  style="width: 30px!important;outline: none;border:none;"
+                                            <input style="width: 30px!important;outline: none;border:none;"
                                                    {{request()->bedrooms!=null ? 'value='.request()->bedrooms : '' }}  type="text"
                                                    name="bedrooms" class="range-input">
                                         </div>
@@ -204,7 +208,8 @@
                 </form>
 
                 <div class="top-buttons-wrapper">
-                    <a href="{{route('real-estates.create')}}" class="listing-button buttonstyle1">+ ლისტინგის დამატება</a>
+                    <a href="{{route('real-estates.create')}}" class="listing-button buttonstyle1">+ ლისტინგის
+                        დამატება</a>
                     <button id="agent-open-modal" class="buttonstyle2">+ აგენტის დამატება</button>
                 </div>
 
@@ -233,14 +238,14 @@
                     @endforeach
                 @endif
                 {{-- PriceRange--}}
-                @if(request()->maxprice!=null && request()->minprice!=null)
+                @if((request()->maxprice!=null && request()->minprice!=null) || request()->minprice!=null || request()->maxprice!=null )
                     <div id="area-container" class="search-item-wrapper search-pricerange">
 
                         <div style="display: flex; align-items: center">
 
-                            <span class="searchable">{{request()->minprice}}<span>₾</span></span>
+                            <span class="searchable">{{request()->minprice ? request()->minprice : 0}}<span>₾</span></span>
                             <span style="margin: 0 5px"> - </span>
-                            <span class="searchable">{{request()->maxprice}}<span>₾</span></span>
+                            <span class="searchable">{{request()->maxprice ? request()->maxprice : ' ... '}}<span>₾</span></span>
 
 
                         </div>
@@ -254,15 +259,15 @@
                     </div>
                 @endif
                 {{-- AreaRange--}}
-                @if(request()->minarea!=null && request()->maxarea!=null)
+                @if((request()->minarea!=null && request()->maxarea!=null) || request()->minarea!=null || request()->maxarea!=null)
                     <div id="area-container" class="search-item-wrapper search-arearange">
                         <input id="area" type="hidden" value="" name="area">
                         <div style="display: flex; align-items: center">
-                            <span class="searchable" id="min_area">{{request()->minarea}} მ<sup>2</sup></span>
+                            <span class="searchable" id="min_area">{{request()->minarea ? request()->minarea : 0}} მ<sup>2</sup></span>
                             <input name="min_area" value="{{request()->minarea}}" type="hidden">
                             <span style="margin: 0 5px"> - </span>
                             <input name="max_area" value="{{request()->maxarea}}" type="hidden">
-                            <span class="searchable" id="max_area">{{request()->maxarea}} მ<sup>2</sup></span>
+                            <span class="searchable" id="max_area">{{request()->maxarea ? request()->maxarea : ' ... ' }} მ<sup>2</sup></span>
                         </div>
                         <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="15"
                              viewBox="0 0 14 15"
@@ -289,10 +294,10 @@
                     </div>
                 @endif
 
-               @if(array_filter(request()->query()))
-                <a style="text-decoration: none;" href="{{route('real-estates.index')}}" >
-                    <span class="clear-text">გასუფთავება</span>
-                </a>
+                @if(array_filter(request()->query()))
+                    <a style="text-decoration: none;" href="{{route('real-estates.index')}}">
+                        <span class="clear-text">გასუფთავება</span>
+                    </a>
                 @endif
             </form>
 
@@ -307,9 +312,9 @@
 
                 @foreach($filteredlistings as $listing)
 
-
                     <div data-listing-id="{{$listing['id']}}" class="listing-item">
-                        <a style="all: unset;cursor:pointer;width: 100%" href="{{route('real-estates.show',['id'=>$listing['id']])}}">
+                        <a style="all: unset;cursor:pointer;width: 100%"
+                           href="{{route('real-estates.show',['id'=>$listing['id']])}}">
                             <div class="listing-img-wrapper">
                                 <img src="{{$listing['image']}}" alt="">
                                 <span class="listing-type">{{$listing['is_rental']===1 ? 'ქირავდება' : 'იყიდება'}}</span>
@@ -320,9 +325,11 @@
                                         $price = $listing['price'];
                                         $formated_price = number_format($price, 0, '.', ' ');
                                     @endphp
-                                    <p style="margin-bottom: 7px" class="listing-price"><span>{{$formated_price}}</span> <span>₾</span></p>
+                                    <p style="margin-bottom: 7px" class="listing-price"><span>{{$formated_price}}</span>
+                                        <span>₾</span></p>
                                     <div class="listing-address">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                             viewBox="0 0 20 20"
                                              fill="none">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                   d="M5.05025 4.05025C7.78392 1.31658 12.2161 1.31658 14.9497 4.05025C17.6834 6.78392 17.6834 11.2161 14.9497 13.9497L10 18.8995L5.05025 13.9497C2.31658 11.2161 2.31658 6.78392 5.05025 4.05025ZM10 11C11.1046 11 12 10.1046 12 9C12 7.89543 11.1046 7 10 7C8.89543 7 8 7.89543 8 9C8 10.1046 8.89543 11 10 11Z"
@@ -335,7 +342,8 @@
 
                                 <div class="listing-data">
                                     <div class="listing-data-wrapper">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24"
                                              fill="none">
                                             <path d="M20.25 10.8141C19.7772 10.6065 19.2664 10.4996 18.75 10.5H5.25C4.73368 10.4995 4.22288 10.6063 3.75 10.8136C3.08166 11.1059 2.51294 11.5865 2.11336 12.1968C1.71377 12.8071 1.50064 13.5205 1.5 14.25V19.5C1.5 19.6989 1.57902 19.8897 1.71967 20.0303C1.86032 20.171 2.05109 20.25 2.25 20.25C2.44891 20.25 2.63968 20.171 2.78033 20.0303C2.92098 19.8897 3 19.6989 3 19.5V19.125C3.00122 19.0259 3.04112 18.9312 3.11118 18.8612C3.18124 18.7911 3.27592 18.7512 3.375 18.75H20.625C20.7241 18.7512 20.8188 18.7911 20.8888 18.8612C20.9589 18.9312 20.9988 19.0259 21 19.125V19.5C21 19.6989 21.079 19.8897 21.2197 20.0303C21.3603 20.171 21.5511 20.25 21.75 20.25C21.9489 20.25 22.1397 20.171 22.2803 20.0303C22.421 19.8897 22.5 19.6989 22.5 19.5V14.25C22.4993 13.5206 22.2861 12.8073 21.8865 12.1971C21.4869 11.5869 20.9183 11.1063 20.25 10.8141Z"
                                                   fill="#021526" fill-opacity="0.5"/>
@@ -345,7 +353,8 @@
                                         <span class="data">{{$listing['bedrooms']}}</span>
                                     </div>
                                     <div class="listing-data-wrapper">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 18 18"
                                              fill="none">
                                             <path d="M0 16C0 16.5304 0.210714 17.0391 0.585786 17.4142C0.960859 17.7893 1.46957 18 2 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16V2C18 1.46957 17.7893 0.960859 17.4142 0.585786C17.0391 0.210714 16.5304 0 16 0H2C1.46957 0 0.960859 0.210714 0.585786 0.585786C0.210714 0.960859 0 1.46957 0 2V16ZM9 3H15V9H13V5H9V3ZM3 9H5V13H9V15H3V9Z"
                                                   fill="#021526" fill-opacity="0.5"/>
@@ -354,7 +363,8 @@
 
                                     </div>
                                     <div class="listing-data-wrapper">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18"
+                                             viewBox="0 0 16 18"
                                              fill="none">
                                             <path d="M7.01717 0.338139C6.80803 0.554674 6.69051 0.848379 6.69045 1.15465V4.14122H1.11507C0.819339 4.14122 0.535715 4.2629 0.326598 4.47948C0.117481 4.69607 0 4.98982 0 5.29612V9.91571C0 10.222 0.117481 10.5158 0.326598 10.7323C0.535715 10.9489 0.819339 11.0706 1.11507 11.0706H6.69045V18H8.9206V11.0706H12.859C13.0225 11.0705 13.1839 11.0333 13.3319 10.9614C13.4799 10.8896 13.6108 10.7849 13.7154 10.6548L15.8709 7.97548C15.9543 7.87172 16 7.74095 16 7.60591C16 7.47088 15.9543 7.34011 15.8709 7.23635L13.7154 4.55698C13.6108 4.42691 13.4799 4.32225 13.3319 4.2504C13.1839 4.17856 13.0225 4.14128 12.859 4.14122H8.9206V1.15465C8.92055 0.926271 8.85513 0.703031 8.7326 0.513154C8.61007 0.323278 8.43594 0.175289 8.23221 0.0878981C8.02849 0.000506892 7.80432 -0.0223635 7.58805 0.0221781C7.37178 0.0667197 7.17311 0.176673 7.01717 0.338139Z"
                                                   fill="#021526" fill-opacity="0.5"/>
@@ -369,7 +379,6 @@
                 @endforeach
             </section>
         @endif
-
 
 
     </main>
