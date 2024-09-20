@@ -7,14 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Real Estate Listing</title>
 
-    <style>
-
-
-
-
-    </style>
-
-
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dropdown.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/agentModal.css')}}">

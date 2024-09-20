@@ -21,9 +21,11 @@ closeAgentModal.addEventListener('click', () => {
 
 document.addEventListener('click', (event) => {
 
-    if (agentModal.open && event.target!==openAgentModal) {
+
+    if ( event.target===agentModal &&  event.target !== openAgentModal  ) {
         agentModal.close();
     }
+
 });
 
 
@@ -304,7 +306,7 @@ agentForm.addEventListener('submit', (event) => {
         }
     } else {
         if (!validateAvatar(avatar)) {
-console.log('fired from agent mondal')
+
             agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
             agent_avatar_validation.style.color = 'red';
 

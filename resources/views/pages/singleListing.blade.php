@@ -104,9 +104,9 @@
                       fill="#021526"/>
             </svg>
         </span>
-        <div style="width: 100%;margin-bottom: 50px!important" class="swiper">
+        <div style="margin-bottom: 50px!important" class="swiper">
 
-            <div class="swiper-wrapper" style="display: flex;justify-content: center">
+            <div class="swiper-wrapper">
 
                 @foreach($listings as $swiperlisting)
 
