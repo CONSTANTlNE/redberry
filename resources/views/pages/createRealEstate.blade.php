@@ -277,6 +277,7 @@
                     <button  class="buttonstyle1">დაამატე ლისტინგი</button>
                 </div>
             </div>
+            <input  type="hidden" name="base64" id="base64" value="">
             <input style="display: none" name="image" type="file" id="imageUpload">
         </form>
 

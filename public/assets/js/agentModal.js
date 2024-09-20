@@ -57,6 +57,7 @@ function validateSurname(surname) {
 function validateAvatar(avatar) {
 
 
+
     if(imageUpload.files.length > 0){
 
         return true
@@ -77,6 +78,13 @@ function validateAvatar(avatar) {
     if (fileSize > 1) {
         return false
     }
+
+    if(document.getElementById('uploadedImage').src.startsWith('data:image/')){
+
+        return true
+    }
+
+
 
     return true;
 }
@@ -291,7 +299,7 @@ agentForm.addEventListener('submit', (event) => {
         }
     } else {
         if (!validateAvatar(avatar)) {
-
+console.log('fired from agent mondal')
             agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
             agent_avatar_validation.style.color = 'red';
 

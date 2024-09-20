@@ -3,6 +3,7 @@
 
 const imageUpload = document.getElementById('imageUpload');
 const currentUrl = window.location.href;
+const base64=document.getElementById('base64');
 
 const uploadedImage = document.getElementById('uploadedImage');
 const upload_icon = document.getElementById('agent-avatar-upload-icon')
@@ -33,7 +34,6 @@ imageUpload.addEventListener('change', function (event) {
             if (currentUrl.includes('create/real-estates')){
                 localStorage.setItem('uploadedImage', e.target.result);
             }
-
         };
 
         reader.readAsDataURL(file);
@@ -64,6 +64,8 @@ if (currentUrl.includes('create/real-estates')) {
         if (savedImage) {
 
             uploadedImage.src = savedImage;
+            base64.src = savedImage;
+            base64.value = savedImage;
             uploadedImage.style.display = 'block';
 
             upload_icon.style.display = 'none';
@@ -80,6 +82,8 @@ delete_icon.addEventListener('click', (e) => {
     imageUpload.value = '';
     agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
     agent_avatar_validation.style.color = 'red';
+    base64.src = '';
+    base64.value = '';
 
     if(localStorage.getItem('uploadedImage') !== null){
         localStorage.removeItem('uploadedImage')

@@ -70,7 +70,14 @@ function validateDescription(description) {
 function agentValidation(agent) {
     return agent !== "" ;
 }
-function validateAvatar(avatar) {
+
+function validateAvatar3(avatar) {
+
+
+    console.log(localStorage.getItem('uploadedImage')===null)
+
+if(localStorage.getItem('uploadedImage') === null){
+
 
     if(imageUpload.files.length > 0){
 
@@ -80,6 +87,7 @@ function validateAvatar(avatar) {
     if (!avatar) {
         return false
     }
+
 
     // Validate type
     const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
@@ -93,8 +101,21 @@ function validateAvatar(avatar) {
         return false
     }
 
+}
+
+    console.log(document.getElementById('uploadedImage').src.startsWith('data:image/'))
+
+    if(document.getElementById('uploadedImage').src.startsWith('data:image/')){
+
+        return true
+    }
+
+
+
+
     return true;
 }
+
 
 
 listingForm.addEventListener('submit', (event) => {
@@ -423,13 +444,16 @@ listingForm.addEventListener('submit', (event) => {
 
     }
 
-    if (!validateAvatar(avatar)) {
+
+    if (!validateAvatar3(avatar)) {
 
         agent_avatar_validation.innerHTML = 'ფოტო სავადლებულოა, მოცულობა < 1MB, ფორმატი jpeg/png/gif/webp'
         agent_avatar_validation.style.color = 'red';
 
         isValid2 = false;
+
     }
+
     else {
 
         agent_avatar_validation.innerHTML =
@@ -442,6 +466,8 @@ listingForm.addEventListener('submit', (event) => {
 
     if (isValid2) {
         listingForm.submit();
+
+        localStorage.clear()
     }
 
 

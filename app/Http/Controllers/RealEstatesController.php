@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 
 class RealEstatesController extends Controller
@@ -247,8 +248,21 @@ class RealEstatesController extends Controller
 
     public function store(Request $request)
     {
-        $file     = $request->file('image');
-        $filePath = $file->path();
+        if($request->has('base64') && preg_match('/^data:image\/(\w+);base64,/', $request->base64) ){
+
+
+            $decodedImageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',
+                $request->base64));
+            $filename = time() . '.jpg';
+            Storage::disk('public')->put($filename, $decodedImageData);
+
+            $filePath=Storage::disk('public')->path($filename);
+
+        } else {
+            $file     = $request->file('image');
+            $filePath = $file->path();
+        }
+
 
         $response = Http::withHeaders([
             'accept'        => 'application/json',
@@ -277,7 +291,7 @@ class RealEstatesController extends Controller
 
 
         if (!$response->successful()) {
-            return redirect()->route('real-estates.index')->with('alert_error', 'რაღაც შეცდომა');
+           dd($response->status(), $response->body());
         }
 
 
