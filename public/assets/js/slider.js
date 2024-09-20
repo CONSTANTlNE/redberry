@@ -11,10 +11,14 @@ next.addEventListener('click', () => {
     document.querySelector('.swiper-button-next').click()
 })
 
+
+
+
 const swiper = new Swiper(".swiper", {
     slidesPerView: 4,
     spaceBetween: 30,
     loop: true,
+    loopFillGroupWithBlank: true,
 
     scrollbar: {
         el: ".swiper-scrollbar",
@@ -79,10 +83,24 @@ closemodal.addEventListener('click', () => {
     enableScroll()
 })
 
+
+document.addEventListener('click', (event) => {
+
+    if (deletelistingmodal.open && event.target!==opendeletemodal) {
+        deletelistingmodal.close();
+        enableScroll()
+    }
+});
+
+
+
+
 xsvg.addEventListener('click', () => {
     deletelistingmodal.close();
     enableScroll()
 })
+
+
 
 
 

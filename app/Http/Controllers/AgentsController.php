@@ -30,7 +30,7 @@ class AgentsController extends Controller
             'accept' => 'application/json',
             'Authorization' => 'Bearer ' . config('api.redberry'),
         ])->attach(
-            'avatar', file_get_contents($filePath), 'file_name.jpg' // Change 'file_name.jpg' as needed
+            'avatar', file_get_contents($filePath), 'file_name.jpg'
         )->post('https://api.real-estate-manager.redberryinternship.ge/api/agents', [
             'name' => $request->name,
             'surname' => $request->surname,

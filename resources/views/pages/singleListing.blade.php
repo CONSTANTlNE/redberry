@@ -2,6 +2,8 @@
 
 @section('singleListing')
 
+{{--    @dd($listing)--}}
+
     <section class="single-listing-wrapper">
         <div class="single-top-wrapper">
             <div style="position: relative" class="listing-image-wrapper">
@@ -104,10 +106,11 @@
         </span>
         <div style="width: 100%;margin-bottom: 50px!important" class="swiper">
 
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" style="display: flex;justify-content: center">
 
                 @foreach($listings as $swiperlisting)
 
+                    @if($listing['id']!==$swiperlisting['id'] && $listing['city']['region_id']===$swiperlisting['city']['region_id'])
                     <div data-listing-id="{{$listing['id']}}" class="listing-item swiper-slide">
                         <a class="swiper-slide" style="all: unset;cursor:pointer"
                            href="{{route('real-estates.show',['id'=>$swiperlisting['id']])}}">
@@ -172,7 +175,7 @@
                             </div>
                         </a>
                     </div>
-
+                    @endif
                 @endforeach
             </div>
 
@@ -195,6 +198,8 @@
 </svg>
     </span>
     </div>
+
+
 
 
 

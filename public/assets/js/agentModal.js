@@ -19,7 +19,12 @@ closeAgentModal.addEventListener('click', () => {
 
 })
 
+document.addEventListener('click', (event) => {
 
+    if (agentModal.open && event.target!==openAgentModal) {
+        agentModal.close();
+    }
+});
 
 
 // agent Form Validation
