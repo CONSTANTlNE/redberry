@@ -1,21 +1,23 @@
-const items=document.querySelectorAll('.listing-item')
+let items=document.querySelectorAll('.listing-item')
 
-
+console.log(items)
 // SLIDER
 const next = document.getElementById('swipernext')
 const prev = document.getElementById('swiperprev')
 
 prev.addEventListener('click', () => {
 
+    if(items.length>=5){
     document.querySelector('.swiper-button-prev').click()
-
+    }
 
 
 })
 next.addEventListener('click', () => {
+    items=document.querySelectorAll('.listing-item')
 
-    document.querySelector('.swiper-button-next').click()
-    if(items.length>4){
+    if(items.length>=5){
+        document.querySelector('.swiper-button-next').click()
         document.querySelector('.swiper-wrapper').style.transform = 'translate3d(-350px, 0px, 0px)';
     }
 
@@ -46,9 +48,29 @@ const swiper = new Swiper(".swiper", {
 
 document.addEventListener('DOMContentLoaded',()=>{
 
-    if(items.length>4) {
+    if(items.length>=5) {
         setTimeout(() => {
             document.querySelector('.swiper-wrapper').style.transform = 'translate3d(0px, 0px, 0px)';
+
+        }, 100)
+    }
+
+    if(items.length==4) {
+        setTimeout(() => {
+            document.querySelector('.swiper-wrapper').style.transform = 'translate3d(0px, 0px, 0px)';
+
+        }, 100)
+    }
+
+    if (items.length==3){
+        setTimeout(() => {
+            document.querySelector('.swiper-wrapper').style.transform = 'translate3d(210px, 0px, 0px)';
+
+        }, 100)
+    }
+    if (items.length==2){
+        setTimeout(() => {
+            document.querySelector('.swiper-wrapper').style.transform = 'translate3d(350px, 0px, 0px)';
 
         }, 100)
     }
