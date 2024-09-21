@@ -9,15 +9,17 @@ prev.addEventListener('click', () => {
 
     document.querySelector('.swiper-button-prev').click()
 
-    if(items.length<4){
-    }
 
 
 })
 next.addEventListener('click', () => {
 
     document.querySelector('.swiper-button-next').click()
-    document.querySelector('.swiper-wrapper').style.transform = 'translate3d(-438.375px, 0px, 0px)';
+    if(items.length>4){
+        document.querySelector('.swiper-wrapper').style.transform = 'translate3d(-350px, 0px, 0px)';
+    }
+
+
 })
 
 
@@ -44,12 +46,12 @@ const swiper = new Swiper(".swiper", {
 
 document.addEventListener('DOMContentLoaded',()=>{
 
+    if(items.length>4) {
+        setTimeout(() => {
+            document.querySelector('.swiper-wrapper').style.transform = 'translate3d(0px, 0px, 0px)';
 
-    setTimeout(() => {
-        document.querySelector('.swiper-wrapper').style.transform = 'translate3d(0px, 0px, 0px)';
-
-    }, 100)
-
+        }, 100)
+    }
 })
 
 
